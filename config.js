@@ -15,7 +15,7 @@ var config = {
     // + night-blue
     // + snow
     // + yellow
-    theme: 'night-blue',
+    theme: 'light-grey',
 
     // clients configs
     api: {
@@ -42,104 +42,92 @@ var config = {
         // first dashboard
         {
             // 4 x 3 dashboard
-            columns: 4,
-            rows:    3,
+            columns: 5,
+            rows:    5,
             widgets: [
                 {
-                    type: 'github.user_badge',
-                    user: 'plouc',
+                    type: 'switch.widgets',
                     columns: 1, rows: 1,
-                    x: 0, y: 0
+                    x: 0, y: 4,
+                    // Duration how long to show each widget
+                    duration: 8000,
+                    // Structure within widgets is same normally
+                    // with widgets. Naturally the size and placement
+                    // comes from switch.widgets
+                    widgets: [
+                        {
+                            type: 'time.clock',
+                            timezone: 'America/Los_Angeles',
+                            info: 'date',
+                            title: 'Los Angeles'
+                        },
+                        {
+                            type: 'weather.weather',
+                            city: 'Helsinki',
+                            country: 'FI',
+                            lang: 'en',
+                        },
+                        {
+                            type: 'time.clock',
+                            info: 'time',
+                            timezone: 'Asia/Tokyo',
+                            title: 'Tokyo'
+                        }
+                    ]
                 },
                 {
-                    type: 'github.repository_contributors_stats',
-                    repository: 'plouc/mozaik',
-                    columns: 1, rows: 1,
-                    x: 2, y: 0
+                    type: 'switch.widgets',
+                    columns: 4, rows: 5,
+                    x: 1, y: 0,
+                    // Duration how long to show each widget
+                    duration: 8000,
+                    // Structure within widgets is same normally
+                    // with widgets. Naturally the size and placement
+                    // comes from switch.widgets
+                    widgets: [
+                        {
+                            type: 'travis.build_history',
+                            owner: 'plouc',
+                            repository: 'mozaik',
+                            columns: 4, rows: 5,
+                            x: 1, y: 0
+                        },
+                        {
+                            type: 'github.user_badge',
+                            user: 'plouc',
+                            columns: 4, rows: 5,
+                            x: 1, y: 0
+                        },
+                        {
+                            type: 'travis.repository',
+                            owner: 'plouc',
+                            repository: 'mozaik',
+                            columns: 1, rows: 1,
+                            x: 1, y: 0
+                        },
+                        {
+                            type: 'travis.build_histogram',
+                            owner: 'plouc',
+                            repository: 'mozaik',
+                            columns: 4, rows: 5,
+                            x: 1, y: 0
+                        }
+                    ]
                 },
-                {
-                    type: 'travis.repository',
-                    owner: 'plouc',
-                    repository: 'mozaik',
-                    columns: 1, rows: 1,
-                    x: 1, y: 0
-                },
-                {
-                    type: 'travis.build_histogram',
-                    owner: 'plouc',
-                    repository: 'mozaik',
-                    columns: 2, rows: 1,
-                    x: 1, y: 1
-                },
-                {
-                    type: 'time.clock',
-                    columns: 1, rows: 1,
-                    x: 3, y: 0
-                },
-                {
-                    type: 'travis.repository',
-                    owner: 'plouc',
-                    repository: 'mozaik-demo',
-                    columns: 1, rows: 1,
-                    x: 0, y: 1
-                },
-                {
-                    type: 'travis.build_history',
-                    owner: 'plouc',
-                    repository: 'mozaik',
-                    columns: 1, rows: 2,
-                    x: 3, y: 1
-                },
-                {
-                    type: 'travis.build_histogram',
-                    owner: 'plouc',
-                    repository: 'go-gitlab-client',
-                    columns: 2, rows: 1,
-                    x: 1, y: 2
-                },
-                {
-                    type: 'github.status',
-                    columns: 1, rows: 1,
-                    x: 0, y: 2
-                }
-            ]
-        },
 
-        // second dashboard
-        {
-            // 3 x 2 dashboard
-            columns: 3,
-            rows:    2,
-            widgets: [
-                {
-                    type: 'travis.build_history',
-                    owner: 'plouc',
-                    repository: 'mozaik',
-                    columns: 1, rows: 2,
-                    x: 0, y: 0
-                },
-                {
-                    type: 'github.user_badge',
-                    user: 'plouc',
-                    columns: 1, rows: 1,
-                    x: 2, y: 0
-                },
-                {
-                    type: 'travis.repository',
-                    owner: 'plouc',
-                    repository: 'mozaik',
-                    columns: 1, rows: 1,
-                    x: 1, y: 0
-                },
-                {
-                    type: 'travis.build_histogram',
-                    owner: 'plouc',
-                    repository: 'mozaik',
-                    columns: 2, rows: 1,
-                    x: 1, y: 1
-                }
+
             ]
-        }
+         }
+        //
+        // // second dashboard
+        // {
+        //     // 3 x 2 dashboard
+        //     columns: 3,
+        //     rows:    2,
+        //     widgets: [
+        //
+        //     ]
+        // }
     ]
 };
 
