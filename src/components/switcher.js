@@ -3,7 +3,6 @@ import { Card, Row, Col } from 'react-materialize'
 import io from 'socket.io-client';
 import { getAllNews } from '../apis/news_api'
 import NewsItem from './newsitem'
-import newsitem from './newsitem';
 
 class Switcher extends Component {
     constructor(props) {
