@@ -17,11 +17,11 @@ before_install:
   - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
   - sudo apt-get -y install docker-ce
 
-before_script:
+install:
     - sudo apt-get -y install qemu-user-static
     - docker run --rm --privileged multiarch/qemu-user-static:register
+    - npm instal
 script:
-    - npm instal && 
     - npm run-script build
     - sudo ./build.sh --arch="$ARCH" --qemuarch="$QEMU_ARCH" --qemuversion="$QEMU_VER" --repo="$DOCKER_REPO"
 after_success:
