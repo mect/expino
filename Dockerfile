@@ -10,6 +10,7 @@ COPY ./lighttpd.conf /etc/lighttpd/lighttpd.conf
 RUN apt-get update && apt-get install -y \
       chromium \
       chromium-l10n \
+      sudo \
       fonts-liberation \
       fonts-roboto \
       hicolor-icon-theme \
@@ -29,7 +30,4 @@ RUN groupadd -r chromium && useradd -r -g chromium -G audio,video chromium \
 
 COPY ./build /var/www
 
-# Run as non privileged user
-USER chromium
-
-CMD lighttpd -f /etc/lighttpd/lighttpd.conf && chromium http://localhost
+CMD lighttpd -f /etc/lighttpd/lighttpd.conf && sudo -u chromium chromium http://localhost
