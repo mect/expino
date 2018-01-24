@@ -3,6 +3,7 @@ import { Card, Row, Col } from 'react-materialize'
 import io from 'socket.io-client';
 import { getAllNews } from '../apis/news_api'
 import NewsItem from './newsitem'
+import Weather from './weather'
 
 class Switcher extends Component {
     constructor(props) {
@@ -49,7 +50,7 @@ class Switcher extends Component {
             <Col s={2}>
                 <Row><Card title="Up next">{this.state.items[1]}</Card></Row>
                 <Row><Card title="Up next next">{this.state.items[2]}</Card></Row>
-                <Row><Card/></Row>
+                <Row><Card><Weather/></Card></Row>
                 <Row><Card/></Row>
                 <Row><Card/></Row>
             </Col>

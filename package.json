@@ -22,9 +22,11 @@
     "fbemitter": "^2.1.1",
     "html-to-draftjs": "^1.1.2",
     "moment": "^2.20.1",
+    "qs": "^6.5.1",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
     "react-draft-wysiwyg": "^1.12.5",
+    "react-forecast": "0.0.7",
     "react-hot-keys": "^1.0.5",
     "react-loading": "^1.0.3",
     "react-materialize": "^1.1.2",
@@ -32,7 +34,8 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "^1.0.17",
     "socket.io-client": "^2.0.4",
-    "webpack": "^3.10.0"
+    "webpack": "^3.10.0",
+    "yql": "^1.0.2"
   },
   "babel": {
     "presets": [
