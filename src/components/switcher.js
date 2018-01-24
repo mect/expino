@@ -17,7 +17,7 @@ class Switcher extends Component {
         }
         
         this.loadNews.bind(this)()         
-        setInterval(this.rotate.bind(this), 5000)
+        setTimeout(this.rotate.bind(this), 5000) //maybe i should be improved
     }
 
     loadNews() {
@@ -25,7 +25,7 @@ class Switcher extends Component {
     }
 
     gotNewsItems(result) {
-        this.setState({ items: result.data.map(i => <NewsItem content={i.content} title={i.title}/>) })
+        this.setState({ items: result.data.map(i => <NewsItem content={i.content} title={i.title} time={i.slideTime}/>) })
     }
 
     rotate() {
@@ -35,6 +35,12 @@ class Switcher extends Component {
         items.push(lastZero)
 
         this.setState({ items })
+        
+        let slideTime = 5000
+        if (items[0]) {
+            slideTime= items[0].props.time * 1000
+        }
+        setTimeout(this.rotate.bind(this), slideTime)
     }
 
     render() {
