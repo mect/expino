@@ -4,6 +4,8 @@ import io from 'socket.io-client';
 import { getAllNews } from '../apis/news_api'
 import NewsItem from './newsitem'
 import Weather from './weather'
+import Traffic from './traffic'
+import Clock from './clock'
 
 class Switcher extends Component {
     constructor(props) {
@@ -48,11 +50,11 @@ class Switcher extends Component {
         return <div>
             <Row>
             <Col s={2}>
+                <Row><Card><Clock/></Card></Row>
+                <Row><Card><Weather/></Card></Row>
+                <Row><Card><Traffic/></Card></Row>
                 <Row><Card title="Up next">{this.state.items[1]}</Card></Row>
                 <Row><Card title="Up next next">{this.state.items[2]}</Card></Row>
-                <Row><Card><Weather/></Card></Row>
-                <Row><Card/></Row>
-                <Row><Card/></Row>
             </Col>
             <Col s={10}>
                 <Card>{this.state.items[0]}</Card>
