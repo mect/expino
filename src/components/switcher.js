@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Row, Col } from 'react-materialize'
+import { Card, Row, Col, Icon } from 'react-materialize'
 import io from 'socket.io-client';
 import { getAllNews } from '../apis/news_api'
 import NewsItem from './newsitem'
@@ -8,12 +8,14 @@ import Traffic from './traffic'
 import Clock from './clock'
 import 'velocity-animate/velocity.ui'
 import VelocityTransitionGroup from 'velocity-react/velocity-transition-group'
+import '../css/switcher.css';
+import { LOGO } from '../variables'
 
 class Switcher extends Component {
     count = 0
     hardCodedSlides = [<Traffic time={100}/>]
     constructor(props) {
-        super(props)
+        super(props);
 
         // connect live reloader
         const socket = io.connect("http://localhost:8080/")
@@ -42,10 +44,10 @@ class Switcher extends Component {
     }
 
     rotate() {
-        let items = this.state.items
-        const lastZero = items[0]
-        items = items.slice(1,items.length)
-        items.push(lastZero)
+        let items = this.state.items;
+        const lastZero = items[0];
+        items = items.slice(1,items.length);
+        items.push(lastZero);
 
         this.setState({ items, next: items.slice(1,3).reverse().map(i => <Card key={this.getCount()}>{i}</Card>)  })
         
@@ -60,8 +62,9 @@ class Switcher extends Component {
         return <div>
             <Row>
             <Col s={2}>
-                <Row><Card><Clock/></Card></Row>
-                <Row><Card><Weather/></Card></Row>
+                <Row><div className="logo-margin"><img className="logo" src={LOGO} alt="zorginnovatie logo"/></div></Row>
+                <Row><Card className="left-column-card"><Clock/></Card></Row>
+                <Row><Card className="left-column-card"><Weather/></Card></Row>
                 <VelocityTransitionGroup enter={{animation: "slideDown"}} leave={{animation: "slideUp"}}>
                     {this.state.next}                    
                 </VelocityTransitionGroup>
@@ -69,13 +72,16 @@ class Switcher extends Component {
             </Col>
             <Col s={10}>
                 <VelocityTransitionGroup enter={{animation: "slideDown"}} leave={{animation: "slideUp"}}>
-                    <Card key={this.count}>{this.state.items[0]}</Card>              
+                    <Card className="mainslide" key={this.count}>{this.state.items[0]}</Card>              
                 </VelocityTransitionGroup>
-                
             </Col>
         </Row>
-        <Row>
-            <Card>Expino + 100% - BTC -50% - TM -100%</Card>
+        <Row className="ticker-margin">
+            <Card className="ticker-card-style">
+                <span className="ticker-up ticker-item-width"><Icon className="ticker-up-arrow">   forward</Icon> Expino + 100%   </span>
+                <span className="ticker-down ticker-item-width"><Icon className="ticker-down-arrow">   forward</Icon> BTC -50%   </span>
+                <span className="ticker-down ticker-item-width"><Icon className="ticker-down-arrow">   forward</Icon> TM -100%   </span>
+            </Card>
         </Row>
         </div>
 

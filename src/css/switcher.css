@@ -1,0 +1,72 @@
+body{
+    background:url("http://projecten.dirkmervis.be/expino/bg.jpg") no-repeat center center;
+    background-size:cover;
+    /*background-color: lightgray;*/
+
+}
+
+/*MAIN SLIDE CSS*/
+.mainslide{
+    height:84vh;
+    background-color: rgba(255,255,255,0.8);
+}
+
+
+/*LEFT COLUMN CSS*/
+.logo{
+    width:50%;
+    float:none;
+    margin:8px auto 0 auto;
+}
+
+.logo-margin img{
+    display:block;
+    margin:5px auto;
+}
+
+.left-column-card{
+    background-color: rgba(255,255,255,0.8);
+    height:11vh;
+    margin-bottom:0;
+}
+
+
+/*TICKER CSS*/
+.ticker-up-arrow{
+    transform:rotate(-90deg);
+}
+
+.ticker-down-arrow{
+    transform:rotate(90deg);
+}
+
+.ticker-item-width{
+    width:20%;
+    display:table-cell;
+}
+
+.ticker-up{
+    /*color:darkgreen;*/
+    font-size:24px;
+    color:green;
+}
+
+.ticker-down{
+    /*color:darkred;*/
+    font-size:24px;
+    color:red;
+}
+
+.up-next-title{
+    font-weight:bold;
+    font-size:20px;
+    text-align:center;
+}
+
+.ticker-margin{
+    margin-bottom:0;
+}
+
+.ticker-card-style{
+    background-color: rgba(255,255,255,0.7);
+}
