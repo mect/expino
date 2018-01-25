@@ -13,6 +13,7 @@ import { LOGO } from '../variables'
 
 class Switcher extends Component {
     count = 0
+    hardCodedSlides = [<Traffic time={100}/>]
     constructor(props) {
         super(props);
 
@@ -34,7 +35,7 @@ class Switcher extends Component {
     }
 
     gotNewsItems(result) {
-        this.setState({ items: result.data.map(i => <NewsItem content={i.content} title={i.title} time={i.slideTime}/>) })
+        this.setState({ items: result.data.map(i => <NewsItem content={i.content} title={i.title} time={i.slideTime}/>).concat(this.hardCodedSlides) })
     }
 
     getCount() {
@@ -64,7 +65,6 @@ class Switcher extends Component {
                 <Row><div className="logo-margin"><img className="logo" src={LOGO} alt="zorginnovatie logo"/></div></Row>
                 <Row><Card className="left-column-card"><Clock/></Card></Row>
                 <Row><Card className="left-column-card"><Weather/></Card></Row>
-                <Row><Card className="left-column-card"><Traffic/></Card></Row>
                 <VelocityTransitionGroup enter={{animation: "slideDown"}} leave={{animation: "slideUp"}}>
                     {this.state.next}                    
                 </VelocityTransitionGroup>
