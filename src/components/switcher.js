@@ -1,24 +1,45 @@
 import React, { Component } from 'react';
 import { Card, Row, Col, Icon } from 'react-materialize'
+import io from 'socket.io-client';
 import { getAllNews } from '../apis/news_api'
-import NewsItem from './newsitem';
+import NewsItem from './newsitem'
+import Weather from './weather'
+import Traffic from './traffic'
+import Clock from './clock'
+import 'velocity-animate/velocity.ui'
+import VelocityTransitionGroup from 'velocity-react/velocity-transition-group'
 import '../css/switcher.css';
-import { LOGO } from '../variables';
+import { LOGO } from '../variables'
 
 class Switcher extends Component {
+    count = 0
     constructor(props) {
         super(props);
 
+        // connect live reloader
+        const socket = io.connect("http://localhost:8080/")
+        socket.on('update', this.loadNews.bind(this))
+    
         this.state = { 
-            items: [] ,
-        };
+            items: [],
+            next: [],
+        }
+        
+        this.loadNews.bind(this)()         
+        setTimeout(this.rotate.bind(this), 5000) //maybe i should be improved
+    }
 
-        getAllNews().then(this.gotNewsItems.bind(this));
-        setInterval(this.rotate.bind(this), 5000)
+    loadNews() {
+        getAllNews().then(this.gotNewsItems.bind(this))
     }
 
     gotNewsItems(result) {
-        this.setState({ items: result.data.map(i => <NewsItem content={i.content} title={i.title}/>) })
+        this.setState({ items: result.data.map(i => <NewsItem content={i.content} title={i.title} time={i.slideTime}/>) })
+    }
+
+    getCount() {
+        this.count++
+        return this.count
     }
 
     rotate() {
@@ -27,7 +48,13 @@ class Switcher extends Component {
         items = items.slice(1,items.length);
         items.push(lastZero);
 
-        this.setState({ items })
+        this.setState({ items, next: items.slice(1,3).reverse().map(i => <Card key={this.getCount()}>{i}</Card>)  })
+        
+        let slideTime = 5000
+        if (items[0]) {
+            slideTime= items[0].props.time * 1000
+        }
+        setTimeout(this.rotate.bind(this), slideTime)
     }
 
     render() {
@@ -35,15 +62,18 @@ class Switcher extends Component {
             <Row>
             <Col s={2}>
                 <Row><div className="logo-margin"><img className="logo" src={LOGO} alt="zorginnovatie logo"/></div></Row>
-                <Row><Card className="left-column-card"></Card></Row>
-                <Row><Card className="left-column-card"></Card></Row>
-                <Row><Card className="left-column-card">{this.state.items[2]}</Card></Row>
-                <Row><Card className="left-column-card">
-                    <div className="up-next-title">Up Next:</div>
-                    {this.state.items[1]}</Card></Row>
+                <Row><Card className="left-column-card"><Clock/></Card></Row>
+                <Row><Card className="left-column-card"><Weather/></Card></Row>
+                <Row><Card className="left-column-card"><Traffic/></Card></Row>
+                <VelocityTransitionGroup enter={{animation: "slideDown"}} leave={{animation: "slideUp"}}>
+                    {this.state.next}                    
+                </VelocityTransitionGroup>
+       
             </Col>
             <Col s={10}>
-                <Card className="mainslide">{this.state.items[0]}</Card>
+                <VelocityTransitionGroup enter={{animation: "slideDown"}} leave={{animation: "slideUp"}}>
+                    <Card className="mainslide" key={this.count}>{this.state.items[0]}</Card>              
+                </VelocityTransitionGroup>
             </Col>
         </Row>
         <Row className="ticker-margin">

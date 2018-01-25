@@ -1,0 +1,29 @@
+sudo: required
+services: docker
+language: node_js
+node_js:
+    - "8"
+
+env:
+    global:
+        - QEMU_VER=v2.9.1
+        - DOCKER_REPO=expino/kiosk
+    matrix:
+        - ARCH=amd64  QEMU_ARCH=x86_64 
+        - ARCH=armhf  QEMU_ARCH=arm
+
+before_install:
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - sudo apt-get -y install docker-ce
+
+install:
+    - sudo apt-get -y install qemu-user-static
+    - docker run --rm --privileged multiarch/qemu-user-static:register
+    - npm install
+script:
+    - npm run-script build
+    - sudo ./build.sh --arch="$ARCH" --qemuarch="$QEMU_ARCH" --qemuversion="$QEMU_VER" --repo="$DOCKER_REPO"
+after_success:
+    - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    - docker push $DOCKER_REPO
