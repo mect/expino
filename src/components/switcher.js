@@ -11,6 +11,7 @@ import VelocityTransitionGroup from 'velocity-react/velocity-transition-group'
 
 class Switcher extends Component {
     count = 0
+    hardCodedSlides = [<Traffic time={100}/>]
     constructor(props) {
         super(props)
 
@@ -32,7 +33,7 @@ class Switcher extends Component {
     }
 
     gotNewsItems(result) {
-        this.setState({ items: result.data.map(i => <NewsItem content={i.content} title={i.title} time={i.slideTime}/>) })
+        this.setState({ items: result.data.map(i => <NewsItem content={i.content} title={i.title} time={i.slideTime}/>).concat(this.hardCodedSlides) })
     }
 
     getCount() {
@@ -61,7 +62,6 @@ class Switcher extends Component {
             <Col s={2}>
                 <Row><Card><Clock/></Card></Row>
                 <Row><Card><Weather/></Card></Row>
-                <Row><Card><Traffic/></Card></Row>
                 <VelocityTransitionGroup enter={{animation: "slideDown"}} leave={{animation: "slideUp"}}>
                     {this.state.next}                    
                 </VelocityTransitionGroup>
