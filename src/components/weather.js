@@ -7,6 +7,12 @@ class Weather extends Component {
     constructor(props) {
         super(props)
         this.state = { now: null }
+        this.loadWeather.bind(this)()
+
+        setInterval(this.loadWeather.bind(this), 60000)
+    }
+
+    loadWeather() {
         fetchForecastByCityName("Geel, BE").then(this.onWeatherInfo.bind(this))
     }
 
