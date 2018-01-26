@@ -15,6 +15,7 @@ import { LOGO, HOST } from '../variables'
 class Switcher extends Component {
     count = 0
     hardCodedSlides = [<Traffic time={10} title="Verkeer"/>,<Social time={100} title="Sociale Media"/>]
+
     constructor(props) {
         super(props);
 
@@ -25,9 +26,9 @@ class Switcher extends Component {
         this.state = { 
             items: [],
             next: [],
-        }
+        };
         
-        this.loadNews.bind(this)()         
+        this.loadNews.bind(this)();
         setTimeout(this.rotate.bind(this), 5000) //maybe i should be improved
     }
 
@@ -41,7 +42,7 @@ class Switcher extends Component {
     }
 
     getCount() {
-        this.count++
+        this.count++;
         return this.count
     }
 
@@ -52,8 +53,8 @@ class Switcher extends Component {
         items.push(lastZero);
 
         this.setState({ items, next: items.slice(1,3).reverse().map(i => <Card key={this.getCount()}>{i.props.title}</Card>)  })
-        
-        let slideTime = 5000
+
+        let slideTime = 5000;
         if (items[0]) {
             slideTime= items[0].props.time * 1000
         }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Preloader } from 'react-materialize'
 import { fetchForecastByCityName, icons } from '../apis/weather_api'
+import '../css/weather.css';
 
 
 class Weather extends Component {
@@ -43,8 +44,14 @@ class Weather extends Component {
             return <Preloader size='small'/>
         }
         return <div>
-            <Row><h1 style={{textAlign:"center"}}><i className={this.getIcon(this.state.now.weather[0].id)}></i></h1></Row>
-            <Row><h2 style={{textAlign:"center"}}>{this.roundTemp(this.state.now.main.temp)}&deg;</h2></Row>
+            <Row className="weather">
+                <span className="weather-item-width weather-padding-left">
+                    <h2><i className={this.getIcon(this.state.now.weather[0].id)}></i></h2>
+                </span>
+                <span className="weather-item-width">
+                    <h2>{this.roundTemp(this.state.now.main.temp)}&deg;</h2>
+                </span>
+            </Row>
         </div>
     }
 }
