@@ -18,6 +18,7 @@ before_install:
   - sudo apt-get -y install docker-ce
 
 install:
+    - cd src && rm -f variables.js && mv variables.js.prod variables.js && cd ..
     - sudo apt-get -y install qemu-user-static
     - docker run --rm --privileged multiarch/qemu-user-static:register
     - npm install

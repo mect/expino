@@ -6,20 +6,22 @@ import NewsItem from './newsitem'
 import Weather from './weather'
 import Traffic from './traffic'
 import Clock from './clock'
+import Social from './social'
 import 'velocity-animate/velocity.ui'
 import VelocityTransitionGroup from 'velocity-react/velocity-transition-group'
 import '../css/switcher.css';
-import { LOGO } from '../variables'
+import { LOGO, HOST } from '../variables'
 
 class Switcher extends Component {
-    count = 0;
-    hardCodedSlides = [<Traffic time={100}/>]
+    count = 0
+    hardCodedSlides = [<Traffic time={10} title="Verkeer"/>,<Social time={100} title="Sociale Media"/>]
+
     constructor(props) {
         super(props);
 
         // connect live reloader
-        const socket = io.connect("http://localhost:8080/");
-        socket.on('update', this.loadNews.bind(this));
+        const socket = io.connect(HOST)
+        socket.on('update', this.loadNews.bind(this))
     
         this.state = { 
             items: [],
@@ -35,7 +37,8 @@ class Switcher extends Component {
     }
 
     gotNewsItems(result) {
-        this.setState({ items: result.data.map(i => <NewsItem content={i.content} title={i.title} time={i.slideTime}/>).concat(this.hardCodedSlides) })
+        const items = result.data.map(i => <NewsItem content={i.content} title={i.title} time={i.slideTime}/>).concat(this.hardCodedSlides)
+        this.setState({ items, next: items.slice(1,3).reverse().map(i => <Card key={this.getCount()}>{i.props.title}</Card>)  })
     }
 
     getCount() {
@@ -49,8 +52,8 @@ class Switcher extends Component {
         items = items.slice(1,items.length);
         items.push(lastZero);
 
-        this.setState({ items, next: items.slice(1,3).reverse().map(i => <Card key={this.getCount()}>{i}</Card>)  });
-        
+        this.setState({ items, next: items.slice(1,3).reverse().map(i => <Card key={this.getCount()}>{i.props.title}</Card>)  })
+
         let slideTime = 5000;
         if (items[0]) {
             slideTime= items[0].props.time * 1000
