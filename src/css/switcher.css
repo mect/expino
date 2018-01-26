@@ -30,6 +30,18 @@ body{
     margin-bottom:0;
 }
 
+.up-next-next{
+    color:gray;
+    font-size:2vw;
+    font-family: luxi_monoregular sans-serif;
+}
+
+.up-next{
+    color:darkgray;
+    font-size:2vw;
+    font-family: luxi_monoregular sans-serif;
+}
+
 
 /*TICKER CSS*/
 .ticker-up-arrow{
