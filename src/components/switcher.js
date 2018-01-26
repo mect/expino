@@ -36,7 +36,8 @@ class Switcher extends Component {
     }
 
     gotNewsItems(result) {
-        this.setState({ items: result.data.map(i => <NewsItem content={i.content} title={i.title} time={i.slideTime}/>).concat(this.hardCodedSlides) })
+        const items = result.data.map(i => <NewsItem content={i.content} title={i.title} time={i.slideTime}/>).concat(this.hardCodedSlides)
+        this.setState({ items, next: items.slice(1,3).reverse().map(i => <Card key={this.getCount()}>{i.props.title}</Card>)  })
     }
 
     getCount() {
