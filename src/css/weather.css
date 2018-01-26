@@ -1,0 +1,20 @@
+.weather{
+    text-align:center;
+    margin:0;
+
+}
+
+.weather-item-width{
+    margin:0;
+    display:table-cell;
+    width:50%;
+    text-align:center;
+}
+
+.weather-item-width h2{
+    margin:0;
+}
+
+.weather-padding-left{
+    padding-right:20px;
+}

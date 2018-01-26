@@ -12,21 +12,21 @@ import '../css/switcher.css';
 import { LOGO } from '../variables'
 
 class Switcher extends Component {
-    count = 0
+    count = 0;
     hardCodedSlides = [<Traffic time={100}/>]
     constructor(props) {
         super(props);
 
         // connect live reloader
-        const socket = io.connect("http://localhost:8080/")
-        socket.on('update', this.loadNews.bind(this))
+        const socket = io.connect("http://localhost:8080/");
+        socket.on('update', this.loadNews.bind(this));
     
         this.state = { 
             items: [],
             next: [],
-        }
+        };
         
-        this.loadNews.bind(this)()         
+        this.loadNews.bind(this)();
         setTimeout(this.rotate.bind(this), 5000) //maybe i should be improved
     }
 
@@ -39,7 +39,7 @@ class Switcher extends Component {
     }
 
     getCount() {
-        this.count++
+        this.count++;
         return this.count
     }
 
@@ -49,9 +49,9 @@ class Switcher extends Component {
         items = items.slice(1,items.length);
         items.push(lastZero);
 
-        this.setState({ items, next: items.slice(1,3).reverse().map(i => <Card key={this.getCount()}>{i}</Card>)  })
+        this.setState({ items, next: items.slice(1,3).reverse().map(i => <Card key={this.getCount()}>{i}</Card>)  });
         
-        let slideTime = 5000
+        let slideTime = 5000;
         if (items[0]) {
             slideTime= items[0].props.time * 1000
         }
