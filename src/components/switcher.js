@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Row, Col, Icon } from 'react-materialize'
+import { Card, Row, Col } from 'react-materialize'
 import io from 'socket.io-client';
 import { getAllNews } from '../apis/news_api'
 import NewsItem from './newsitem'
@@ -7,6 +7,7 @@ import Weather from './weather'
 import Traffic from './traffic'
 import Clock from './clock'
 import Social from './social'
+import Ticker from './ticker'
 import 'velocity-animate/velocity.ui'
 import VelocityTransitionGroup from 'velocity-react/velocity-transition-group'
 import '../css/switcher.css';
@@ -79,13 +80,7 @@ class Switcher extends Component {
                 </VelocityTransitionGroup>
             </Col>
         </Row>
-        <Row className="ticker-margin">
-            <Card className="ticker-card-style">
-                <span className="ticker-up ticker-item-width"><Icon className="ticker-up-arrow">   forward</Icon> Expino + 100%   </span>
-                <span className="ticker-down ticker-item-width"><Icon className="ticker-down-arrow">   forward</Icon> BTC -50%   </span>
-                <span className="ticker-down ticker-item-width"><Icon className="ticker-down-arrow">   forward</Icon> TM -100%   </span>
-            </Card>
-        </Row>
+        <Ticker/>
         </div>
 
     }
