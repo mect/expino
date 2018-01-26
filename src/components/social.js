@@ -10,7 +10,7 @@ export default () => {
         </Col>
         <Col s={6}>
             <FacebookProvider appId="325609894599288">
-                <Page href="https://www.facebook.com/mobilabTM/" tabs="timeline" height="700px" width="700px"  />
+                <Page href="https://www.facebook.com/mobilabTM/" tabs="timeline" height="700px" width="750px"  />
             </FacebookProvider>  
         </Col>
     </Row>
