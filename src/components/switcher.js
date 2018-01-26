@@ -6,6 +6,7 @@ import NewsItem from './newsitem'
 import Weather from './weather'
 import Traffic from './traffic'
 import Clock from './clock'
+import Social from './social'
 import 'velocity-animate/velocity.ui'
 import VelocityTransitionGroup from 'velocity-react/velocity-transition-group'
 import '../css/switcher.css';
@@ -13,7 +14,7 @@ import { LOGO, HOST } from '../variables'
 
 class Switcher extends Component {
     count = 0
-    hardCodedSlides = [<Traffic time={10}/>]
+    hardCodedSlides = [<Traffic time={10}/>,<Social time={100}/>]
     constructor(props) {
         super(props);
 
