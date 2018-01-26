@@ -9,7 +9,7 @@ import Clock from './clock'
 import 'velocity-animate/velocity.ui'
 import VelocityTransitionGroup from 'velocity-react/velocity-transition-group'
 import '../css/switcher.css';
-import { LOGO } from '../variables'
+import { LOGO, HOST } from '../variables'
 
 class Switcher extends Component {
     count = 0
@@ -18,7 +18,7 @@ class Switcher extends Component {
         super(props);
 
         // connect live reloader
-        const socket = io.connect("http://localhost:8080/")
+        const socket = io.connect(HOST)
         socket.on('update', this.loadNews.bind(this))
     
         this.state = { 
