@@ -1,20 +1,25 @@
 .weather{
     text-align:center;
-    margin:0;
 
 }
 
 .weather-item-width{
-    margin:0;
     display:table-cell;
     width:50%;
     text-align:center;
+    float:left;
+    margin:auto;
 }
 
 .weather-item-width h2{
-    margin:0;
+    margin:auto;
 }
 
 .weather-padding-left{
     padding-right:20px;
+
+}
+
+.weather-item-font{
+    font-family: luxi_monoregular sans-serif;
 }

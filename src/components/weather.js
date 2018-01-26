@@ -45,11 +45,11 @@ class Weather extends Component {
         }
         return <div>
             <Row className="weather">
-                <span className="weather-item-width weather-padding-left">
+                <span className="weather-item-width weather-padding-left weather-item-font">
                     <h2><i className={this.getIcon(this.state.now.weather[0].id)}></i></h2>
                 </span>
                 <span className="weather-item-width">
-                    <h2>{this.roundTemp(this.state.now.main.temp)}&deg;</h2>
+                    <h2 className="weather-item-font">{this.roundTemp(this.state.now.main.temp)}&deg;</h2>
                 </span>
             </Row>
         </div>

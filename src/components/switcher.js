@@ -39,7 +39,7 @@ class Switcher extends Component {
 
     gotNewsItems(result) {
         const items = result.data.map(i => <NewsItem content={i.content} title={i.title} time={i.slideTime}/>).concat(this.hardCodedSlides)
-        this.setState({ items, next: items.slice(1,3).reverse().map(i => <Card key={this.getCount()}>{i.props.title}</Card>)  })
+        this.setState({ items, next: items.slice(1,3).reverse().map((i, j) => <Card className={j == 0? "up-next": "up-next-next"} key={this.getCount()}>{i.props.title}</Card>)  })
     }
 
     getCount() {
@@ -53,7 +53,7 @@ class Switcher extends Component {
         items = items.slice(1,items.length);
         items.push(lastZero);
 
-        this.setState({ items, next: items.slice(1,3).reverse().map(i => <Card key={this.getCount()}>{i.props.title}</Card>)  })
+        this.setState({ items, next: items.slice(1,3).reverse().map((i, j) => <Card className={j == 0? "up-next": "up-next-next"} key={this.getCount()}>{i.props.title}</Card>)  })
 
         let slideTime = 5000;
         if (items[0]) {
@@ -70,7 +70,7 @@ class Switcher extends Component {
                 <Row><Card className="left-column-card"><Clock/></Card></Row>
                 <Row><Card className="left-column-card"><Weather/></Card></Row>
                 <VelocityTransitionGroup enter={{animation: "slideDown"}} leave={{animation: "slideUp"}}>
-                    {this.state.next}                    
+                    <h3>{this.state.next}</h3>
                 </VelocityTransitionGroup>
        
             </Col>
