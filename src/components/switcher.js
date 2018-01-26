@@ -14,7 +14,7 @@ import { LOGO, HOST } from '../variables'
 
 class Switcher extends Component {
     count = 0
-    hardCodedSlides = [<Traffic time={10}/>,<Social time={100}/>]
+    hardCodedSlides = [<Traffic time={10} title="Verkeer"/>,<Social time={100} title="Sociale Media"/>]
     constructor(props) {
         super(props);
 
@@ -50,7 +50,7 @@ class Switcher extends Component {
         items = items.slice(1,items.length);
         items.push(lastZero);
 
-        this.setState({ items, next: items.slice(1,3).reverse().map(i => <Card key={this.getCount()}>{i}</Card>)  })
+        this.setState({ items, next: items.slice(1,3).reverse().map(i => <Card key={this.getCount()}>{i.props.title}</Card>)  })
         
         let slideTime = 5000
         if (items[0]) {
