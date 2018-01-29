@@ -16,7 +16,7 @@ import { LOGO, HOST } from '../variables'
 
 class Switcher extends Component {
     count = 0
-    hardCodedSlides = [<Traffic time={10} title="Verkeer"/>,<Social time={10} title="Sociale Media"/>, <Trains time={100} title="NMBS"/>]
+    hardCodedSlides = [<Traffic time={15} title="Verkeer"/>,<Social time={15} title="Sociale Media"/>, <Trains time={15} title="NMBS"/>]
 
     constructor(props) {
         super(props);
