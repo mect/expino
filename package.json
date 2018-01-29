@@ -31,6 +31,7 @@
     "react-forecast": "0.0.7",
     "react-google-maps": "^9.4.5",
     "react-hot-keys": "^1.0.5",
+    "react-irail": "^0.1.2",
     "react-loading": "^1.0.3",
     "react-malarquee": "0.0.11",
     "react-materialize": "^1.1.2",
