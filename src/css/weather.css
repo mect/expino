@@ -1,6 +1,6 @@
 .weather{
     text-align:center;
-
+    color:#e76800;
 }
 
 .weather-item-width{
@@ -9,10 +9,12 @@
     text-align:center;
     float:left;
     margin:auto;
+    color:#e76800;
 }
 
 .weather-item-width h2{
     margin:auto;
+    font-size:3rem;
 }
 
 .weather-padding-left{
@@ -21,5 +23,5 @@
 }
 
 .weather-item-font{
-    font-family: luxi_monoregular sans-serif;
+    font-family: luxi_monoregular, sans-serif;
 }

@@ -1,14 +1,29 @@
 body{
     background:url("http://projecten.dirkmervis.be/expino/bg.jpg") no-repeat center center;
     background-size:cover;
-    /*background-color: lightgray;*/
+}
 
+p{
+    padding-bottom:10px;
+    background-color: transparent;
+}
+
+p span{
+    background-color: transparent !important;
+}
+
+h1, h2, h3,h4{
+    color:#e76800;
 }
 
 /*MAIN SLIDE CSS*/
 .mainslide{
     height:84vh;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,0.6);
+}
+
+.main-title{
+    color:#e76800;
 }
 
 
@@ -25,22 +40,39 @@ body{
 }
 
 .left-column-card{
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,0.6);
     height:11vh;
     margin-bottom:0;
 }
 
 .up-next-next{
-    color:gray;
+    color:rgba(231,104,0,0.7);
     font-size:2vw;
     font-family: luxi_monoregular sans-serif;
+    height:180px;
+    text-align:center;
 }
 
 .up-next{
-    color:darkgray;
+    color:rgba(231,104,0,0.5);
     font-size:2vw;
     font-family: luxi_monoregular sans-serif;
+    height:180px;
+    text-align:center;
 }
+
+/*.up-next .card-content, .up-next .card-content div{
+    height:100%;
+    display:inline-block;
+    vertical-align: middle;
+}
+
+.up-next-next .card-content, .up-next-next .card-content div{
+    height:100%;
+    display:inline-block;
+    vertical-align: middle;
+}*/
+
 
 
 /*TICKER CSS*/
@@ -80,5 +112,5 @@ body{
 }
 
 .ticker-card-style{
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255,255,255,0.6);
 }
