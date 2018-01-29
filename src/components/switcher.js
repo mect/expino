@@ -13,10 +13,15 @@ import VelocityTransitionGroup from 'velocity-react/velocity-transition-group'
 import '../css/switcher.css';
 import { LOGO, HOST } from '../variables'
 
+const hardCodedSlides = {
+    "traffic": <Traffic time={10} title="Verkeer"/>,
+    "social": <Social time={10} title="Sociale Media"/>,
+}
+
 class Switcher extends Component {
     count = 0
-    hardCodedSlides = [<Traffic time={10} title="Verkeer"/>,<Social time={90} title="Sociale Media"/>]
-
+    hardCodedSlides = []
+    
     constructor(props) {
         super(props);
 
