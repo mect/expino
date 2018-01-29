@@ -3,12 +3,13 @@ import {  Row, Col } from 'react-materialize'
 import { GoogleMap, TrafficLayer, withScriptjs, withGoogleMap } from "react-google-maps"
 import { compose, withProps } from 'recompose';
 import { getTraffic } from '../apis/traffic_api'
+import '../css/traffic.css';
 
 const Map = compose(
     withProps({
       googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",
       loadingElement: <div style={{ height: `100%` }} />,
-      containerElement: <div style={{ height: `80vh` }} />,
+      containerElement: <div style={{ height: `55vh` }} />,
       mapElement: <div style={{ height: `100%` }} />,
     }),
     withScriptjs,
@@ -42,8 +43,17 @@ class Traffic extends Component {
 
     render(){
       return <Row>
-          <Col s={6}>{this.state.map}</Col>
-          <Col s={6}>{this.state.trafficInfo.map((i,j) => <Row key={j}><p>{i.title}</p></Row>)}</Col>
+          <Col s={12}>
+              <h1 className="traffic-title">Het verkeer vandaag:</h1>
+          </Col>
+          <Col s={6}>
+              <div><h4>Het verkeer in Geel:</h4></div>
+              <div>{this.state.map}</div>
+          </Col>
+          <Col s={6}>
+              <div><h4>Overzicht files:</h4></div>
+              <div>{this.state.trafficInfo.map((i,j) => <Row key={j}><p>{i.title}</p></Row>)}</div>
+          </Col>
       </Row>
     }
 }
