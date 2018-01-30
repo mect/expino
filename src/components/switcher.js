@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, Row, Col } from 'react-materialize'
 import io from 'socket.io-client';
 import { getAllNews } from '../apis/news_api'
+import { getAllSlides } from '../apis/slides_api'
 import NewsItem from './newsitem'
 import Weather from './weather'
 import Traffic from './traffic'
@@ -13,24 +14,34 @@ import VelocityTransitionGroup from 'velocity-react/velocity-transition-group'
 import '../css/switcher.css';
 import { LOGO, HOST } from '../variables'
 
+const availableSlides = {
+    "traffic": <Traffic time={10} title="Verkeer"/>,
+    "social": <Social time={10} title="Sociale Media"/>,
+}
+
 class Switcher extends Component {
     count = 0
-    hardCodedSlides = [<Traffic time={10} title="Verkeer"/>,<Social time={10} title="Sociale Media"/>]
+    featureSlides = []
 
     constructor(props) {
         super(props);
 
         // connect live reloader
         const socket = io.connect(HOST)
-        socket.on('update', this.loadNews.bind(this))
+        socket.on('update', this.loadFeatureSlides.bind(this))
     
         this.state = { 
             items: [],
             next: [],
         };
         
-        this.loadNews.bind(this)();
+
+        this.loadFeatureSlides.bind(this)()
         setTimeout(this.rotate.bind(this), 5000) //maybe i should be improved
+    }
+
+    loadFeatureSlides() {
+        getAllSlides().then(this.gotSlides.bind(this))
     }
 
     loadNews() {
@@ -38,8 +49,17 @@ class Switcher extends Component {
     }
 
     gotNewsItems(result) {
-        const items = result.data.map(i => <NewsItem content={i.content} title={i.title} time={i.slideTime}/>).concat(this.hardCodedSlides)
+        const items = result.data.map(i => <NewsItem content={i.content} title={i.title} time={i.slideTime}/>).concat(this.featureSlides)
+        console.log(items)
         this.setState({ items, next: items.slice(1,3).reverse().map((i, j) => <Card className={j === 0? "up-next left-column-card": "up-next-next left-column-card"} key={this.getCount()}><span className="up-next-style">{i.props.title}</span></Card>)  })
+    }
+
+    gotSlides(result) {
+        this.featureSlides = []
+        for (let key of result.data) {
+            this.featureSlides.push(availableSlides[key])
+        }
+        this.loadNews.bind(this)()
     }
 
     getCount() {
