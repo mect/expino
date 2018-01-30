@@ -20,7 +20,7 @@ const availableSlides = {
     "traffic": <Traffic time={10} title="Verkeer"/>,
     "social": <Social time={10} title="Sociale Media"/>,
     "trains": <Trains time={10} title="NMBS"/>,
-    "keukendienst": <Keukendienst time={10} title="Keukendienst" />
+    "keukendienst": <Keukendienst time={10} title="Keuken dienst" />
 }
 
 class Switcher extends Component {

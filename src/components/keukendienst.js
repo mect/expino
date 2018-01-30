@@ -21,7 +21,9 @@ class Keukendienst extends Component {
 
         const days = this.state.keukendienst.days.map((i,j) => <th key={j}>{i}</th>)
         const rows = this.state.keukendienst.tasks.map((task, i) => <tr key={i}><th>{task}</th>{this.state.keukendienst.days.map((day, j) => <td>{(this.state.keukendienst.content[day] || {})[task]}</td>)}</tr>)
-        return <Table>
+        return <div>
+        <h1>Keuken dienst</h1>
+        <Table>
             <thead>
                 <tr>
                     <th/>
@@ -32,6 +34,7 @@ class Keukendienst extends Component {
                 {rows}
             </tbody>
         </Table>
+        </div>
     }
 }
 
