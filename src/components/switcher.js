@@ -18,6 +18,7 @@ import { LOGO, HOST } from '../variables'
 const availableSlides = {
     "traffic": <Traffic time={10} title="Verkeer"/>,
     "social": <Social time={10} title="Sociale Media"/>,
+    "trains": <Trains time={10} title="NMBS"/>,
 }
 
 class Switcher extends Component {
