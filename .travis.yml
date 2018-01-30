@@ -27,4 +27,6 @@ script:
     - sudo ./build.sh --arch="$ARCH" --qemuarch="$QEMU_ARCH" --qemuversion="$QEMU_VER" --repo="$DOCKER_REPO"
 after_success:
     - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-    - docker push $DOCKER_REPO
+    - if [ "$TRAVIS_BRANCH" == "master" ]; then 
+            docker push $DOCKER_REPO
+        fi
