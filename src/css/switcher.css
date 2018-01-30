@@ -1,6 +1,7 @@
 body{
     background:url("http://projecten.dirkmervis.be/expino/bg.jpg") no-repeat center center;
     background-size:cover;
+    overflow:hidden;
 }
 
 p{

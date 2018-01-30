@@ -16,8 +16,8 @@ import '../css/switcher.css';
 import { LOGO, HOST } from '../variables'
 
 const availableSlides = {
-    "traffic": <Traffic time={10} title="Verkeer"/>,
-    "social": <Social time={10} title="Sociale Media"/>,
+    "traffic": <Traffic time={15} title="Verkeer"/>,
+    "social": <Social time={15} title="Sociale Media"/>,
 }
 
 class Switcher extends Component {
@@ -76,7 +76,7 @@ class Switcher extends Component {
 
         this.setState({ items, next: items.slice(1,3).reverse().map((i, j) => <Card className={j === 0? "up-next left-column-card": "up-next-next left-column-card"} key={this.getCount()}><span className="up-next-style">{i.props.title}</span></Card>)  })
 
-        let slideTime = 5000;
+        let slideTime = 15000;
         if (items[0]) {
             slideTime= items[0].props.time * 1000
         }
