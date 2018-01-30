@@ -10,6 +10,7 @@ import Clock from './clock'
 import Social from './social'
 import Ticker from './ticker'
 import Trains from './trains'
+import Keukendienst from './keukendienst'
 import 'velocity-animate/velocity.ui'
 import VelocityTransitionGroup from 'velocity-react/velocity-transition-group'
 import '../css/switcher.css';
@@ -21,6 +22,7 @@ const availableSlides = {
     "traffic": <Traffic time={15} title="Verkeer"/>,
     "social": <Social time={15} title="Sociale Media"/>,
     "trains": <Trains time={15} title="NMBS"/>,
+    "keukendienst": <Keukendienst time={15} title="Keuken dienst" />,
 }
 
 class Switcher extends Component {
