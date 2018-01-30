@@ -9,6 +9,7 @@ import Traffic from './traffic'
 import Clock from './clock'
 import Social from './social'
 import Ticker from './ticker'
+import Trains from './trains'
 import 'velocity-animate/velocity.ui'
 import VelocityTransitionGroup from 'velocity-react/velocity-transition-group'
 import '../css/switcher.css';

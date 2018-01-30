@@ -4,4 +4,3 @@
 export const LOGO = 'http://projecten.dirkmervis.be/expino/zorg_logo.png';
 export const THEMECOLOR = 'rgb(231,104,0)';
 export const HOST = 'http://localhost:8080'
-
