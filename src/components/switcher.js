@@ -17,10 +17,10 @@ import '../css/switcher.css';
 import { LOGO, HOST } from '../variables'
 
 const availableSlides = {
-    "traffic": <Traffic time={15} title="Verkeer"/>,
-    "social": <Social time={15} title="Sociale Media"/>,
-    "trains": <Trains time={15} title="NMBS"/>,
-    "keukendienst": <Keukendienst time={15} title="Keuken dienst" />,
+    "traffic": <Traffic time={15} title="Verkeer in de buurt"/>,
+    "social": <Social time={15} title="Zorginnovatie op social media"/>,
+    "trains": <Trains time={15} title="NMBS station Geel"/>,
+    "keukendienst": <Keukendienst time={15} title="Keukendienst deze week" />,
 }
 
 class Switcher extends Component {
