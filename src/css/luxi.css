@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'luxi_monoregular';
-    src: url('../../public/fonts/luxi/luximr-regular.woff') format('woff');
+    src: url('/fonts/luxi/luximr-regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -8,7 +8,7 @@
 
 @font-face {
     font-family: 'sourcecodepro';
-    src: url('../../public/fonts/sourcecodepro/sourcecodepro.woff2') format('woff2');
+    src: url('/fonts/sourcecodepro/sourcecodepro.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 
