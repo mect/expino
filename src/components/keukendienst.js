@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Table } from 'react-materialize'
-import { getKeukendienst } from '../apis/keukendienst_api'
+import { Table } from 'react-materialize';
+import { getKeukendienst } from '../apis/keukendienst_api';
+import '../css/keukendienst.css';
 
 class Keukendienst extends Component {
     constructor(props) {
@@ -19,10 +20,10 @@ class Keukendienst extends Component {
             return <div/>
         }
 
-        const days = this.state.keukendienst.days.map((i,j) => <th key={j}>{i}</th>)
-        const rows = this.state.keukendienst.tasks.map((task, i) => <tr key={i}><th>{task}</th>{this.state.keukendienst.days.map((day, j) => <td>{(this.state.keukendienst.content[day] || {})[task]}</td>)}</tr>)
+        const days = this.state.keukendienst.days.map((i,j) => <th key={j} className="keukendienst-colheader">{i}</th>)
+        const rows = this.state.keukendienst.tasks.map((task, i) => <tr key={i}><th className="keukendienst-rowheader">{task}</th>{this.state.keukendienst.days.map((day, j) => <td className="keukendienst-item">{(this.state.keukendienst.content[day] || {})[task]}</td>)}</tr>)
         return <div>
-        <h1>Keuken dienst</h1>
+        <h1>Keukendienst deze week</h1>
         <Table>
             <thead>
                 <tr>

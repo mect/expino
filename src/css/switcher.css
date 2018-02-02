@@ -61,19 +61,23 @@ img{
 
 .up-next-next{
     color:rgba(240,76,37,0.9);
-    font-size:2vw;
-    font-family: luxi_monoregular sans-serif;
+    font-size:1.5vw;
+    font-family: sourcecodepro, sans-serif;
     height:180px;
     text-align:center;
     margin-top:17px;
+    font-weight:bold;
+    overflow:hidden;
 }
 
 .up-next{
-    color:rgba(240,76,37,0.7);
-    font-size:2vw;
-    font-family: luxi_monoregular sans-serif;
+    color:rgba(240,76,37,0.9);
+    font-size:1.5vw;
+    font-family: sourcecodepro, sans-serif;
     height:180px;
     text-align:center;
+    font-weight:bold;
+    overflow:hidden;
 }
 
 /*.up-next .card-content, .up-next .card-content div{
