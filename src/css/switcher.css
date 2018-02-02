@@ -62,7 +62,7 @@ img{
 .up-next-next{
     color:rgba(240,76,37,0.9);
     font-size:1.5vw;
-    font-family: sourcecodepro, sans-serif;
+    font-family: 'Source Code Pro', monospace;
     height:180px;
     text-align:center;
     margin-top:17px;
@@ -73,7 +73,7 @@ img{
 .up-next{
     color:rgba(240,76,37,0.9);
     font-size:1.5vw;
-    font-family: sourcecodepro, sans-serif;
+    font-family: 'Source Code Pro', monospace;
     height:180px;
     text-align:center;
     font-weight:bold;
