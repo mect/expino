@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Row, Col } from 'react-materialize'
+import { Card, Row, Col, Input } from 'react-materialize'
 import io from 'socket.io-client';
 import { getAllNews } from '../apis/news_api'
 import { getAllSlides } from '../apis/slides_api'
@@ -11,6 +11,7 @@ import Social from './social'
 import Ticker from './ticker'
 import Trains from './trains'
 import Keukendienst from './keukendienst'
+import Forecast from './forecast'
 import 'velocity-animate/velocity.ui'
 import VelocityTransitionGroup from 'velocity-react/velocity-transition-group'
 import '../css/switcher.css';
@@ -21,6 +22,7 @@ const availableSlides = {
     "social": <Social time={15} title="Zorginnovatie op social media"/>,
     "trains": <Trains time={15} title="NMBS station Geel"/>,
     "keukendienst": <Keukendienst time={15} title="Keukendienst deze week" />,
+    "weather": <Forecast time={15} title="Het Weer"/>,
 }
 
 class Switcher extends Component {
