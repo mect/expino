@@ -48,6 +48,7 @@ class Forecast extends Component {
         return <Row>
             <h1>Het Weer</h1>
             {cards}
+            <p>Powered by Yahoo</p>
         </Row>
     }
 }
