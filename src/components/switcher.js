@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Row, Col, Input } from 'react-materialize'
+import { Card, Row, Col } from 'react-materialize'
 import io from 'socket.io-client';
 import { getAllNews } from '../apis/news_api'
 import { getAllSlides } from '../apis/slides_api'
