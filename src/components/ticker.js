@@ -51,7 +51,6 @@ class Ticker extends Component {
 
         let content= "This is a weird hack to not make Marquee crash the browser. If you see this please contact your nearest software engineer. "
         content = this.state.items.map((item, i) => {
-            console.log(this.state.metrics)
             const val = this.state.metrics[item]
             if (!val) {
                 return <span className="ticker-down ticker-item-width"><Icon className="ticker-down-arrow">   forward</Icon> {item.name} - unknown</span>
