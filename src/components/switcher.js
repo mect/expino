@@ -57,6 +57,7 @@ class Switcher extends Component {
         console.log(items)
         this.setState({ items, next: (items.slice(1,3).reverse().map((i, j) => { 
             if (!i) {
+                // eslint-disable-next-line 
                 return
             }
             return <Card className={j === 0? "up-next left-column-card": "up-next-next left-column-card"} key={this.getCount()}><span className="up-next-style">{i.props.title}</span></Card>
@@ -83,8 +84,11 @@ class Switcher extends Component {
         items = items.slice(1,items.length);
         items.push(lastZero);
 
+        console.log(items.slice(1,3).reverse())
+
         this.setState({ items, next: (items.slice(1,3).reverse().map((i, j) => { 
             if (!i) {
+                // eslint-disable-next-line 
                 return
             }
             return <Card className={j === 0? "up-next left-column-card": "up-next-next left-column-card"} key={this.getCount()}><span className="up-next-style">{i.props.title}</span></Card>
