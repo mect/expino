@@ -30,7 +30,7 @@ class Ticker extends Component {
 
     gotMetric(res, item) {
         const metrics = this.state.metrics
-        metrics[item] = res.data
+        metrics[item.id] = res.data
         this.setState({ metrics })
     }
 
@@ -49,9 +49,10 @@ class Ticker extends Component {
             </Row>
         }
 
+        console.log(this.state.metrics)
         let content= "This is a weird hack to not make Marquee crash the browser. If you see this please contact your nearest software engineer. "
         content = this.state.items.map((item, i) => {
-            const val = this.state.metrics[item]
+            const val = this.state.metrics[item.id]
             if (!val) {
                 return <span className="ticker-down ticker-item-width"><Icon className="ticker-down-arrow">   forward</Icon> {item.name} - unknown</span>
             }
