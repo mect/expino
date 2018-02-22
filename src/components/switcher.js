@@ -3,6 +3,7 @@ import { Card, Row, Col } from 'react-materialize'
 import io from 'socket.io-client';
 import { getAllNews } from '../apis/news_api'
 import { getAllSlides } from '../apis/slides_api'
+import { getAllGraphs } from '../apis/graphs_api'
 import NewsItem from './newsitem'
 import Weather from './weather'
 import Traffic from './traffic'
@@ -12,10 +13,12 @@ import Ticker from './ticker'
 import Trains from './trains'
 import Keukendienst from './keukendienst'
 import Forecast from './forecast'
+import Grafana from './grafana'
 import 'velocity-animate/velocity.ui'
 import VelocityTransitionGroup from 'velocity-react/velocity-transition-group'
 import '../css/switcher.css';
 import { LOGO, HOST } from '../variables'
+
 
 const availableSlides = {
     "traffic": <Traffic time={15} title="Verkeer in de buurt"/>,
@@ -28,6 +31,7 @@ const availableSlides = {
 class Switcher extends Component {
     count = 0
     featureSlides = []
+    graphs = []
 
     constructor(props) {
         super(props);
@@ -50,12 +54,16 @@ class Switcher extends Component {
         getAllSlides().then(this.gotSlides.bind(this))
     }
 
+    loadGraphs() {
+        getAllGraphs().then(this.gotGraphs.bind(this))
+    }
+
     loadNews() {
         getAllNews().then(this.gotNewsItems.bind(this))
     }
 
     gotNewsItems(result) {
-        const items = result.data.map(i => <NewsItem content={i.content} title={i.title} time={i.slideTime}/>).concat(this.featureSlides)
+        const items = result.data.map(i => <NewsItem content={i.content} title={i.title} time={i.slideTime}/>).concat(this.featureSlides).concat(this.graphs)
         console.log(items)
         this.setState({ items, next: (items.slice(1,3).reverse().map((i, j) => { 
             if (!i) {
@@ -72,8 +80,16 @@ class Switcher extends Component {
         for (let key of result.data) {
             this.featureSlides.push(availableSlides[key])
         }
-        this.loadNews.bind(this)()
+        this.loadGraphs.bind(this)()
     }
+
+    gotGraphs(result) {
+        this.graphs = []
+        for (let item of result.data) {
+            this.graphs.push(<Grafana time={15} title={item.name} src={item.url}/>)
+        }
+        this.loadNews.bind(this)()
+    } 
 
     getCount() {
         this.count++;
