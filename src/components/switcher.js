@@ -57,7 +57,14 @@ class Switcher extends Component {
     gotNewsItems(result) {
         const items = result.data.map(i => <NewsItem content={i.content} title={i.title} time={i.slideTime}/>).concat(this.featureSlides)
         console.log(items)
-        this.setState({ items, next: items.slice(1,3).reverse().map((i, j) => <Card className={j === 0? "up-next left-column-card": "up-next-next left-column-card"} key={this.getCount()}><span className="up-next-style">{i.props.title}</span></Card>)  })
+        this.setState({ items, next: (items.slice(1,3).reverse().map((i, j) => { 
+            if (!i) {
+                // eslint-disable-next-line 
+                return
+            }
+            return <Card className={j === 0? "up-next left-column-card": "up-next-next left-column-card"} key={this.getCount()}><span className="up-next-style">{i.props.title}</span></Card>
+            }))
+        })
     }
 
     gotSlides(result) {
@@ -79,7 +86,16 @@ class Switcher extends Component {
         items = items.slice(1,items.length);
         items.push(lastZero);
 
-        this.setState({ items, next: items.slice(1,3).reverse().map((i, j) => <Card className={j === 0? "up-next left-column-card": "up-next-next left-column-card"} key={this.getCount()}><span className="up-next-style">{i.props.title}</span></Card>)  })
+        console.log(items.slice(1,3).reverse())
+
+        this.setState({ items, next: (items.slice(1,3).reverse().map((i, j) => { 
+            if (!i) {
+                // eslint-disable-next-line 
+                return
+            }
+            return <Card className={j === 0? "up-next left-column-card": "up-next-next left-column-card"} key={this.getCount()}><span className="up-next-style">{i.props.title}</span></Card>
+            }))
+        })
 
         let slideTime = 15000;
         if (items[0]) {
