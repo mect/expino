@@ -2,19 +2,28 @@ import React, { Component } from 'react';
 import { Card, Row, Icon } from 'react-materialize'
 import { getItems, getDiff } from '../apis/ticker_api'
 import Marquee from 'react-malarquee'
+import io from 'socket.io-client';
+import { HOST } from '../variables'
 
 class Ticker extends Component {
     constructor(props) {
         super(props)
 
+        const socket = io.connect(HOST)
+        socket.on('update', this.loadItems.bind(this))
+
         this.state = { metrics: {}, items: [] }
 
-        getItems().then(this.gotItems.bind(this))
+        this.loadItems.bind(this)()
 
         this.fetchItems = this.fetchItems.bind(this)
         this.gotMetric = this.gotMetric.bind(this)
 
         setInterval(this.fetchItems, 10 * 1000)
+    }
+
+    loadItems() {
+        getItems().then(this.gotItems.bind(this))
     }
 
     gotItems(res) {
