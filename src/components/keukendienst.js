@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Table } from 'react-materialize';
 import { getKeukendienst } from '../apis/keukendienst_api';
 import '../css/keukendienst.css';
 
