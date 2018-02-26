@@ -1,11 +1,4 @@
-.keukendienst-rowheader{
-    font-size:30px;
-}
-
-.keukendienst-colheader{
-    font-size:30px;
-}
-
-.keukendienst-item{
-    font-size:20px;
+.keukendienst-naam{
+    padding: 20px;
+    text-align: center;
 }

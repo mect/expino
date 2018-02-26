@@ -19,22 +19,11 @@ class Keukendienst extends Component {
         if (!this.state.keukendienst) {
             return <div/>
         }
-
-        const days = this.state.keukendienst.days.map((i,j) => <th key={j} className="keukendienst-colheader">{i}</th>)
-        const rows = this.state.keukendienst.tasks.map((task, i) => <tr key={i}><th className="keukendienst-rowheader">{task}</th>{this.state.keukendienst.days.map((day, j) => <td className="keukendienst-item">{(this.state.keukendienst.content[day] || {})[task]}</td>)}</tr>)
+        const names = this.state.keukendienst.names.map((name, i) => <h2 key={i} className="keukendienst-naam">{name}</h2>)
+        
         return <div>
-        <h1>Keukendienst deze week</h1>
-        <Table>
-            <thead>
-                <tr>
-                    <th/>
-                    {days}
-                </tr>
-            </thead>
-            <tbody>
-                {rows}
-            </tbody>
-        </Table>
+            <h1>Keukendienst deze week</h1>
+            {names}
         </div>
     }
 }
