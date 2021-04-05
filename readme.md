@@ -1,8 +1,9 @@
 Expino Kiosk
 
-### How to run 
+### How to run
 
-Get Jessie Frazelle's seccomp profile 
+Get Jessie Frazelle's seccomp profile
+
 ```
 wget https://raw.githubusercontent.com/jfrazelle/dotfiles/master/etc/docker/seccomp/chrome.json -O ~/chrome.json
 ```

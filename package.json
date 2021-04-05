@@ -1,58 +1,53 @@
 {
-  "name": "les2",
+  "name": "expino",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "MECT",
+  "license": "AGPL3",
   "dependencies": {
-    "axios": "^0.17.1",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "draft-js": "^0.10.5",
-    "draftjs-to-html": "^0.8.2",
-    "fbemitter": "^2.1.1",
-    "html-to-draftjs": "^1.1.2",
-    "moment": "^2.20.1",
-    "node-sass": "^4.7.2",
-    "qs": "^6.5.1",
-    "react": "^15.6.2",
-    "react-analog-clock": "^2.0.0",
-    "react-dom": "^15.6.2",
-    "react-draft-wysiwyg": "^1.12.5",
-    "react-facebook": "^4.2.1",
-    "react-forecast": "0.0.7",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
+    "node-sass": "^5.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-google-maps": "^9.4.5",
-    "react-hot-keys": "^1.0.5",
     "react-irail": "^0.1.3",
-    "react-loading": "^1.0.3",
-    "react-malarquee": "0.0.11",
-    "react-materialize": "^1.1.2",
-    "react-moment": "^0.7.0",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "^1.0.17",
-    "react-twitter-widgets": "^1.7.1",
-    "rss-parser": "^3.0.1",
-    "sass-loader": "^6.0.6",
-    "socket.io-client": "^2.0.4",
-    "velocity-animate": "^1.4.0",
-    "velocity-react": "^1.3.3",
-    "velocity-transition-group": "^1.2.2",
-    "webpack": "^3.10.0",
-    "yql": "^1.0.2"
+    "react-malarquee": "0.0.13",
+    "react-materialize": "^3.9.8",
+    "react-scripts": "4.0.3",
+    "socket.io-client": "^4.0.0",
+    "velocity-animate": "^1.5.2",
+    "velocity-react": "^1.4.3",
+    "web-vitals": "^1.0.1"
   },
-  "babel": {
-    "presets": [
-      "es2015",
-      "react"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
     ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "prettier": "2.2.1"
   }
 }

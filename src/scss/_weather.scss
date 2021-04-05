@@ -1,0 +1,10 @@
+.weather {
+  text-align: center;
+  color: $text-color;
+  font-family: $monospace;
+  font-size: 4rem;
+
+  .card-content {
+    padding: 1px;
+  }
+}

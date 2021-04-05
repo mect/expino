@@ -1,0 +1,122 @@
+body {
+  /*background:url("http://projecten.dirkmervis.be/expino/bg.jpg") no-repeat center center;*/
+  background-color: $bg-color;
+  background-size: cover;
+  overflow: hidden;
+}
+
+h1 {
+  text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $text-color;
+  font-family: $titlefont;
+}
+
+img {
+  max-height: 65vh;
+}
+
+.mainslide {
+  height: 88vh;
+  background-color: rgba(255, 255, 255, 0.6);
+  font-size: 50px;
+  align-content: center;
+}
+
+.mainslide h2 {
+  font-size: 70px;
+}
+
+.main-title {
+  color: $text-color;
+}
+
+.card-content div div div img {
+  overflow: hidden;
+  display: block;
+  margin: auto;
+}
+
+/*LEFT COLUMN CSS*/
+.logo {
+  width: 70%;
+  float: none;
+  margin: 8px auto 0 auto;
+}
+
+.logo-margin img {
+  display: block;
+}
+
+.left-column-card {
+  background-color: rgba(255, 255, 255, 0.6);
+  //height:11vh;
+  margin-bottom: 0;
+}
+
+.up-next-next {
+  color: $text-color;
+  font-size: 1.5vw;
+  font-family: $titlefont;
+  text-align: center;
+  overflow: hidden;
+}
+
+.up-next {
+  color: $text-color;
+  font-size: 1.5vw;
+  font-family: $titlefont;
+  text-align: center;
+  overflow: hidden;
+}
+
+/*.up-next .card-content, .up-next .card-content div{
+    height:100%;
+    display:inline-block;
+    vertical-align: middle;
+}
+
+.up-next-next .card-content, .up-next-next .card-content div{
+    height:100%;
+    display:inline-block;
+    vertical-align: middle;
+}*/
+
+/*TICKER CSS*/
+
+.ticker-item-width {
+  width: 20%;
+  display: table-cell;
+}
+
+.ticker {
+  display: inline;
+  font-size: 24px;
+}
+
+.up-next-title {
+  //font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  font-family: $titlefont;
+}
+
+.ticker-margin {
+  margin-bottom: 0;
+}
+
+.ticker-card-style {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+#volgende {
+  color: white;
+  margin-top: 5vh;
+}

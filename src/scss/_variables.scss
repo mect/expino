@@ -1,0 +1,9 @@
+:root {
+  --text-color: #000;
+  --bg-color: #368ad8;
+}
+
+$text-color: var(--text-color);
+$bg-color: var(--bg-color);
+$monospace: "Roboto Mono", monospace;
+$titlefont: "Roboto", sans-serif;

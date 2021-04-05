@@ -1,4 +1,4 @@
-import axios from 'axios';
-import { HOST } from '../variables'
+import axios from "axios";
+import { HOST } from "../variables";
 
-export const getTraffic = () => axios.get(`${HOST}/api/traffic`)
+export const getTraffic = () => axios.get(`${HOST}/api/traffic`);

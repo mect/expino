@@ -1,17 +1,19 @@
-﻿import React from 'react';
-import ReactDOM from 'react-dom';
+﻿import React from "react";
+import ReactDOM from "react-dom";
+import { THEMECOLOR } from "./variables";
 
-import Switcher from './components/switcher'
+import "./scss/style.scss";
+
+import Switcher from "./components/switcher";
 
 const App = function () {
-    return (
-        <div>
-            <Switcher />
-        </div>
-    );
+  document.documentElement.style.setProperty("--bg-color", THEMECOLOR);
+
+  return (
+    <div>
+      <Switcher />
+    </div>
+  );
 };
 
-ReactDOM.render(
-    <App />,
-    document.querySelector("#container")
-);
+ReactDOM.render(<App />, document.querySelector("#container"));
