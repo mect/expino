@@ -28,4 +28,4 @@ jobs:
           git add .
           git commit -m "Deploy Expino $GITHUB_SHA"
           git push --set-upstream origin deploy-expino-$GITHUB_SHA
-          gh pr create --title "Deploy Expino $GITHUB_SHA" --body "Deploy $GITHUB_SHA of Expino" --repo github.com/thehivebot/infrastructure
+          gh pr create --title "Deploy Expino $GITHUB_SHA" --body "Deploy $GITHUB_SHA of Expino" --repo github.com/moedersvoormoeders/infrastructure
