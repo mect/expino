@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Card, Row, Icon } from "react-materialize";
-import { getItems, getDiff } from "../apis/ticker_api";
 import Marquee from "react-malarquee";
 import io from "socket.io-client";
-import { HOST } from "../variables";
+import { HOST, TOKEN } from "../variables";
 
 class Ticker extends Component {
   constructor(props) {
@@ -16,9 +15,14 @@ class Ticker extends Component {
   }
 
   loadNews = () => {
-    fetch(
-      "https://cors-anywhere.herokuapp.com/https://www.vrt.be/vrtnws/nl.rss.articles.xml"
-    )
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    };
+
+    fetch(`${HOST}/display/rss`, requestOptions)
       .then((response) => response.text())
       .then((str) => new window.DOMParser().parseFromString(str, "text/xml"))
       .then((data) => {

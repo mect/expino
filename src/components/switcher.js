@@ -12,7 +12,7 @@ import Trains from "./trains";
 import Forecast from "./forecast";
 import "velocity-animate/velocity.ui";
 import VelocityTransitionGroup from "velocity-react/velocity-transition-group";
-import { LOGO } from "../variables";
+import { HOST, LOGO } from "../variables";
 
 const availableSlides = {
   traffic: <Traffic time={15} title="Verkeer in de buurt" />,
@@ -30,8 +30,12 @@ class Switcher extends React.Component {
     super(props);
 
     // connect live reloader
-    //const socket = io.connect(HOST)
-    //socket.on('update', this.loadFeatureSlides.bind(this))
+    const socket = io.connect(HOST);
+    socket.on("connect", () => {
+      console.log(socket.id); // ojIckSD2jqNzOqIrAGzL
+    });
+    socket.on("*", console.log);
+    socket.on("update", this.loadFeatureSlides);
 
     this.state = {
       next: [],
@@ -44,35 +48,25 @@ class Switcher extends React.Component {
     this.loadNewsItems();
   }
 
-  loadNewsItems = () => {
-    let res = [
-      {
-        title: "Vandaag in uw kar",
-        content: `<h2 style="text-align: center">Patatten</h2><img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Aardappel_%27Dor%C3%A9%27_%28Solanum_tuberosum_%27Dor%C3%A9%27%29.jpg"/>`,
-        slideTime: 10,
-      },
-      {
-        title: "Zeephuisje",
-        content: `<h2>Opgelet: verdeling week 01/04</h2> Geen verdeling wegens Corona, we zien u graag volgende week terug!`,
-        slideTime: 10,
-      },
-      {
-        title: "Markten",
-        content: `<table className="striped">
-                        <tr><td>Kinderkleding</td><td>01/04 - 03/04</td></tr>
-                        <tr><td>Speelgoed</td><td>01/05 - 03/05</td></tr>
-                        <tr><td>Kapotte LCDs</td><td>01/06 - 03/06</td></tr>
-                        </table>`,
-        slideTime: 10,
-      },
-    ];
-    res.map((i) => console.log(i));
-    const items = res.map((i) => (
-      <NewsItem content={i.content} title={i.title} time={i.slideTime} />
-    ));
+  loadNewsItems = async () => {
+    let res = await getAllNews();
+
+    const items = [];
+    for (let item of res) {
+      for (let langItem of item.languageItems) {
+        items.push(
+          <NewsItem
+            id={item.ID}
+            content={langItem.content}
+            title={langItem.title}
+            language={langItem.language}
+            time={item.slideTime}
+          />
+        );
+      }
+    }
     items.push(availableSlides.trains);
     this.setState({ items: items });
-    console.log("STATENEWS", this.state);
   };
 
   getCount = () => {
@@ -87,37 +81,15 @@ class Switcher extends React.Component {
       setTimeout(this.rotate.bind(this), 1000);
       return;
     }
-    console.log("STATE", this.state);
 
     // change order in array to put the current last
     const lastZero = items[0];
     items = items.slice(1, items.length);
     items.push(lastZero);
 
-    console.log(items.slice(1, 3).reverse());
-
     this.setState({
       items,
-      next: items
-        .slice(1, 3)
-        .reverse()
-        .map((i, j) => {
-          if (!i) {
-            return;
-          }
-          return (
-            <Card
-              className={
-                j === 0
-                  ? "up-next left-column-card"
-                  : "up-next-next left-column-card"
-              }
-              key={this.getCount()}
-            >
-              <span className="up-next-style">{i.props.title}</span>
-            </Card>
-          );
-        }),
+      next: this.composeNextSlides(items),
     });
 
     let slideTime = 15000;
@@ -125,6 +97,43 @@ class Switcher extends React.Component {
       slideTime = items[0].props.time * 1000;
     }
     setTimeout(this.rotate, slideTime);
+  };
+
+  composeNextSlides = (items) => {
+    const out = [];
+
+    let c = 0;
+    let j = 0;
+    while (out.length < 2) {
+      if (
+        !items[c].props.id ||
+        (items[c].props.language == "NL" &&
+          items[c].props.id != items[0].props.id)
+      ) {
+        // TODO: not hard code main language
+        out.push(
+          <Card
+            className={
+              j === 0
+                ? "up-next left-column-card"
+                : "up-next-next left-column-card"
+            }
+            key={j}
+          >
+            <span className="up-next-style">{items[c].props.title}</span>
+          </Card>
+        );
+
+        j++;
+      }
+
+      c++;
+      if (c >= items.length) {
+        break;
+      }
+    }
+
+    return out.reverse();
   };
 
   render() {
