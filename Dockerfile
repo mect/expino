@@ -1,4 +1,4 @@
-FROM node:14 as build
+FROM amd64/node:14 as build
 
 COPY ./ /opt/expino
 WORKDIR /opt/expino
