@@ -120,3 +120,35 @@ img {
   color: white;
   margin-top: 5vh;
 }
+
+.ui-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  background-color: black;
+  margin: auto 0;
+
+  .expino-logo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    img {
+      width: 100%;
+      max-width: 500px;
+    }
+    .spinner {
+      width: 100%;
+      text-align: center;
+
+      .fas {
+        font-size: 4rem;
+        color: white;
+      }
+    }
+  }
+}

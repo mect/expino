@@ -40,6 +40,7 @@ class Switcher extends React.Component {
     this.state = {
       next: [],
       items: [],
+      loading: true,
     };
   }
 
@@ -90,6 +91,7 @@ class Switcher extends React.Component {
     this.setState({
       items,
       next: this.composeNextSlides(items),
+      loading: false,
     });
 
     let slideTime = 15000;
@@ -137,6 +139,22 @@ class Switcher extends React.Component {
   };
 
   render() {
+    if (this.state.loading) {
+      return (
+        <div className="ui-loader">
+          <div className="expino-logo">
+            <img
+              alt="Expino"
+              className="img-fluid"
+              src="./css/expinologo.png"
+            />
+            <div className="spinner">
+              <i className="fas fa-circle-notch fa-spin"></i>
+            </div>
+          </div>
+        </div>
+      );
+    }
     return (
       <div>
         <Row>
