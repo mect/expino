@@ -66,7 +66,7 @@ class Switcher extends React.Component {
         );
       }
     }
-    items.push(availableSlides.trains);
+    //items.push(availableSlides.trains);
     this.setState({ items: items });
   };
 
@@ -157,7 +157,7 @@ class Switcher extends React.Component {
     }
     return (
       <div>
-        <Row>
+        <Row className="switcher">
           <Col s={2}>
             <Row>
               <div className="logo-margin">
