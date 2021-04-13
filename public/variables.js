@@ -6,4 +6,4 @@ window.expino.THEMECOLOR = "#368ad8";
 window.expino.HOST = `https://api.expino.mvm.digital`;
 window.expino.WEATHERCITY = "Antwerpen, BE";
 window.expino.TOKEN = "local";
-window.expino.TICKER_SIZE = "30px";
+window.expino.TICKER_SIZE = "3rem";
