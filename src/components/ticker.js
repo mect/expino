@@ -59,7 +59,7 @@ class Ticker extends Component {
     return (
       <Row className="ticker-margin">
         <Card className="ticker-card-style">
-          <Marquee loop={true} fill={true} rate={50}>
+          <Marquee loop={true} fill={true} rate={100}>
             {content}
           </Marquee>
         </Card>
