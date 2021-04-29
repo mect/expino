@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, Row, Col } from "react-materialize";
-import io from "socket.io-client";
 import { getAllNews } from "../apis/news_api";
 import NewsItem from "./newsitem";
 import Weather from "./weather";
@@ -26,16 +25,10 @@ class Switcher extends React.Component {
   featureSlides = [];
   graphs = [];
 
+  ws = null;
+
   constructor(props) {
     super(props);
-
-    // connect live reloader
-    const socket = io.connect(HOST);
-    socket.on("connect", () => {
-      console.log(socket.id); // ojIckSD2jqNzOqIrAGzL
-    });
-    socket.on("*", console.log);
-    socket.on("update", this.loadFeatureSlides);
 
     this.state = {
       next: [],
@@ -45,11 +38,32 @@ class Switcher extends React.Component {
   }
 
   componentDidMount() {
+    this.connectLiveReload();
     this.rotate();
     this.loadNewsItems();
   }
 
+  connectLiveReload = () => {
+    let uri = HOST.replace("https", "wss").replace("http", "ws") + "/ws";
+    this.ws = new WebSocket(uri);
+
+    this.ws.onopen = function () {
+      console.log("Connected to WS");
+    };
+
+    this.ws.onmessage = (e) => {
+      console.log(e.data);
+      if (e.data == "UPDATE") {
+        this.loadNewsItems();
+      }
+    };
+  };
+
   loadNewsItems = async () => {
+    this.setState({
+      loading: true,
+    });
+
     let res = await getAllNews();
 
     const items = [];
