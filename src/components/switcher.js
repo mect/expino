@@ -57,6 +57,12 @@ class Switcher extends React.Component {
         this.loadNewsItems();
       }
     };
+
+    this.ws.onclose = function () {
+      // connection closed, discard old websocket and create a new one in 5s
+      this.ws = null;
+      setTimeout(this.connectLiveReload, 5000);
+    };
   };
 
   loadNewsItems = async () => {
