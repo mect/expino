@@ -27,12 +27,25 @@ img {
   max-height: 65vh;
 }
 
-.mainslide {
+.slide {
   padding: 44px 22px;
-  height: 88vh;
   background-color: $card-bg;
   font-size: 50px;
   align-content: center;
+
+  li {
+    list-style-type: disc !important;
+  }
+}
+
+.mainslide {
+  @extend .slide;
+  height: 88vh;
+}
+
+.sideslide {
+  @extend .slide;
+  padding: 0px;
 }
 
 .mainslide h2 {
