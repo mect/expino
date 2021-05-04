@@ -11,7 +11,7 @@ import Trains from "./trains";
 import Forecast from "./forecast";
 import "velocity-animate/velocity.ui";
 import VelocityTransitionGroup from "velocity-react/velocity-transition-group";
-import { HOST, LOGO } from "../variables";
+import { HOST, LOGO, STYLE } from "../variables";
 
 const availableSlides = {
   traffic: <Traffic time={15} title="Verkeer in de buurt" />,
@@ -175,6 +175,60 @@ class Switcher extends React.Component {
         </div>
       );
     }
+
+    if (STYLE == "close") {
+      return (
+        <div>
+          <Row className="switcher">
+            <Col s={2}>
+              <Row>
+                <div className="logo-margin">
+                  <img className="logo" src={LOGO} alt="logo" />
+                </div>
+              </Row>
+              <Row>
+                <Card className="left-column-card">
+                  <Clock />
+                </Card>
+              </Row>
+              <Row>
+                <Card className="left-column-card weather">
+                  <Weather />
+                </Card>
+              </Row>
+              <Row>
+                <h3 id="volgende">Volgende:</h3>
+              </Row>
+              <VelocityTransitionGroup
+                enter={{ animation: "slideDown" }}
+                leave={{ animation: "slideUp" }}
+              >
+                <h3>{this.state.next}</h3>
+              </VelocityTransitionGroup>
+            </Col>
+            <Col s={5}>
+              <VelocityTransitionGroup>
+                <Card className="mainslide" key={this.count}>
+                  {this.state.items[0]}
+                </Card>
+              </VelocityTransitionGroup>
+            </Col>
+            <Col s={5}>
+              <VelocityTransitionGroup>
+                <Card className="sideslide">
+                  <Traffic time={15} title="Verkeer in de buurt" />
+                </Card>
+                <Card className="sideslide">
+                  <Trains time={15} title="Dienstregeling Antwerpen-Centraal" />
+                </Card>
+              </VelocityTransitionGroup>
+            </Col>
+          </Row>
+          <Ticker />
+        </div>
+      );
+    }
+
     return (
       <div>
         <Row className="switcher">
