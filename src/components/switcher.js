@@ -8,10 +8,11 @@ import Clock from "./clock";
 import Social from "./social";
 import Ticker from "./ticker";
 import Trains from "./trains";
+import DeLijn from "./delijn";
 import Forecast from "./forecast";
 import "velocity-animate/velocity.ui";
 import VelocityTransitionGroup from "velocity-react/velocity-transition-group";
-import { HOST, LOGO } from "../variables";
+import { HOST, LOGO, STYLE } from "../variables";
 
 const availableSlides = {
   traffic: <Traffic time={15} title="Verkeer in de buurt" />,
@@ -52,16 +53,25 @@ class Switcher extends React.Component {
     };
 
     this.ws.onmessage = (e) => {
-      console.log(e.data);
       if (e.data == "UPDATE") {
         this.loadNewsItems();
       }
     };
 
-    this.ws.onclose = function () {
+    const reconnect = () => {
       // connection closed, discard old websocket and create a new one in 5s
       this.ws = null;
       setTimeout(this.connectLiveReload, 5000);
+    };
+
+    this.ws.onclose = reconnect;
+
+    this.ws.onerror = () => {
+      if (this.ws) {
+        this.ws.close();
+      }
+
+      reconnect();
     };
   };
 
@@ -175,6 +185,65 @@ class Switcher extends React.Component {
         </div>
       );
     }
+
+    if (STYLE == "close") {
+      return (
+        <div>
+          <Row className="switcher">
+            <Col s={2}>
+              <Row>
+                <div className="logo-margin">
+                  <img className="logo" src={LOGO} alt="logo" />
+                </div>
+              </Row>
+              <Row>
+                <Card className="left-column-card">
+                  <Clock />
+                </Card>
+              </Row>
+              <Row>
+                <Card className="left-column-card weather">
+                  <Weather />
+                </Card>
+              </Row>
+              <Row>
+                <h3 id="volgende">Volgende:</h3>
+              </Row>
+              <VelocityTransitionGroup
+                enter={{ animation: "slideDown" }}
+                leave={{ animation: "slideUp" }}
+              >
+                <h3>{this.state.next}</h3>
+              </VelocityTransitionGroup>
+            </Col>
+            <Col s={5}>
+              <VelocityTransitionGroup>
+                <Card className="mainslide" key={this.count}>
+                  {this.state.items[0]}
+                </Card>
+              </VelocityTransitionGroup>
+            </Col>
+            <Col s={5}>
+              <VelocityTransitionGroup>
+                <Card className="sideslide">
+                  <Traffic time={15} title="Verkeer in de buurt" />
+                </Card>
+                <Card className="sideslide">
+                  <DeLijn
+                    tableClassName="striped delijn"
+                    haltes={"102085+102090"}
+                    amount={6}
+                    distanceTime={10}
+                  ></DeLijn>
+                </Card>
+              </VelocityTransitionGroup>
+            </Col>
+          </Row>
+          <Ticker />
+        </div>
+      );
+    }
+
     return (
       <div>
         <Row className="switcher">

@@ -1,5 +1,4 @@
 body {
-  /*background:url("http://projecten.dirkmervis.be/expino/bg.jpg") no-repeat center center;*/
   background-color: $bg-color;
   background-size: cover;
   overflow: hidden;
@@ -45,7 +44,8 @@ img {
 
 .mainslide {
   @extend .slide;
-  height: 88vh;
+  line-height: 1;
+  height: 89.55vh;
 }
 
 .sideslide {
@@ -174,4 +174,8 @@ img {
       }
     }
   }
+}
+
+.delijn {
+  font-size: 1.1rem;
 }
