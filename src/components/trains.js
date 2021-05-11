@@ -5,11 +5,11 @@ import { Liveboard } from "react-irail";
 export default () => {
   return (
     <Row className="train-rowstyle">
-      <Col s={8} offset="s2">
+      <Col s={12}>
         <Liveboard
           station="Antwerpen-Centraal"
           lang="nl"
-          max={10}
+          max={5}
           tableClassName="striped"
         />
       </Col>

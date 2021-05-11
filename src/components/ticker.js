@@ -3,6 +3,7 @@ import { Card, Row, Icon } from "react-materialize";
 import Marquee from "react-malarquee";
 import { HOST, TOKEN } from "../variables";
 import { getDisplay } from "../apis/display_api";
+import { unescape } from "lodash";
 
 class Ticker extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class Ticker extends Component {
     this.state = { items: [] };
 
     this.loadTicker();
-    setInterval(this.loadNews, 60 * 60 * 1000); // every hour
+    setInterval(this.loadTicker, 60 * 60 * 1000); // every hour
   }
 
   loadTicker = async () => {
@@ -34,11 +35,10 @@ class Ticker extends Component {
       .then((response) => response.text())
       .then((str) => new window.DOMParser().parseFromString(str, "text/xml"))
       .then((data) => {
-        console.log(data);
         const items = data.querySelectorAll("entry");
         const titles = [];
         items.forEach((el) => {
-          titles.push(el.querySelector("title").innerHTML.toString());
+          titles.push(unescape(el.querySelector("title").innerHTML.toString()));
         });
 
         this.setState({ items: titles.slice(0, 15) });

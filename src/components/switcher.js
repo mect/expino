@@ -8,6 +8,7 @@ import Clock from "./clock";
 import Social from "./social";
 import Ticker from "./ticker";
 import Trains from "./trains";
+import DeLijn from "./delijn";
 import Forecast from "./forecast";
 import "velocity-animate/velocity.ui";
 import VelocityTransitionGroup from "velocity-react/velocity-transition-group";
@@ -52,16 +53,25 @@ class Switcher extends React.Component {
     };
 
     this.ws.onmessage = (e) => {
-      console.log(e.data);
       if (e.data == "UPDATE") {
         this.loadNewsItems();
       }
     };
 
-    this.ws.onclose = function () {
+    const reconnect = () => {
       // connection closed, discard old websocket and create a new one in 5s
       this.ws = null;
       setTimeout(this.connectLiveReload, 5000);
+    };
+
+    this.ws.onclose = reconnect;
+
+    this.ws.onerror = () => {
+      if (this.ws) {
+        this.ws.close();
+      }
+
+      reconnect();
     };
   };
 
@@ -219,7 +229,12 @@ class Switcher extends React.Component {
                   <Traffic time={15} title="Verkeer in de buurt" />
                 </Card>
                 <Card className="sideslide">
-                  <Trains time={15} title="Dienstregeling Antwerpen-Centraal" />
+                  <DeLijn
+                    tableClassName="striped delijn"
+                    haltes={"102085+102090"}
+                    amount={6}
+                    distanceTime={10}
+                  ></DeLijn>
                 </Card>
               </VelocityTransitionGroup>
             </Col>
