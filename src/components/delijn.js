@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Moment from "react-moment";
+import { getDelijn } from "../apis/delijn_api";
 
 class DeLijn extends Component {
   static defaultProps = {
@@ -16,48 +16,42 @@ class DeLijn extends Component {
   }
 
   fetchInfo = () => {
-    fetch(
-      `https://b2cservices.delijn.be/rise-api-core/haltes/Multivertrekken/${
-        this.props.haltes
-      }/${this.props.amount + 15}?typeStoring=n1n2`
-    )
-      .then((response) => response.json())
-      .then((res) => {
-        let deps = [];
-        let c = 0;
-        while (deps.length < this.props.amount) {
-          const line = res.lijnen[c];
-          if (!line) {
-            break;
-          }
-
-          if (
-            line.vertrekRealtimeTijdstip - new Date().getTime() <
-              this.props.distanceTime * 60 * 1000 &&
-            !line.predictionDeleted
-          ) {
-            c++;
-            continue;
-          }
-
-          deps.push({
-            lineNumber: line.lijnNummerPubliek,
-            color: line.kleurAchterGrond,
-            textColor: line.kleurVoorGrond,
-            borderColor: line.kleurVoorGrondRand,
-            direction: line.lijnRichting,
-            time:
-              (line.vertrekRealtimeTijdstip || this.vertrekCalendar) -
-              new Date().getTime(),
-            realtime: line.predictionStatussen.indexOf("REALTIME") > -1,
-            scrapped: line.predictionDeleted,
-          });
-
-          c++;
+    getDelijn(this.props.haltes, this.props.amount + 15).then((res) => {
+      let deps = [];
+      let c = 0;
+      while (deps.length < this.props.amount) {
+        const line = res.lijnen[c];
+        if (!line) {
+          break;
         }
 
-        this.setState({ departures: deps });
-      });
+        if (
+          line.vertrekRealtimeTijdstip - new Date().getTime() <
+            this.props.distanceTime * 60 * 1000 &&
+          !line.predictionDeleted
+        ) {
+          c++;
+          continue;
+        }
+
+        deps.push({
+          lineNumber: line.lijnNummerPubliek,
+          color: line.kleurAchterGrond,
+          textColor: line.kleurVoorGrond,
+          borderColor: line.kleurVoorGrondRand,
+          direction: line.lijnRichting,
+          time:
+            (line.vertrekRealtimeTijdstip || this.vertrekCalendar) -
+            new Date().getTime(),
+          realtime: line.predictionStatussen.indexOf("REALTIME") > -1,
+          scrapped: line.predictionDeleted,
+        });
+
+        c++;
+      }
+
+      this.setState({ departures: deps });
+    });
   };
 
   render() {
