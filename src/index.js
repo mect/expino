@@ -1,6 +1,6 @@
 ﻿import React from "react";
 import ReactDOM from "react-dom";
-import { THEMECOLOR, TICKER_SIZE } from "./variables";
+import { THEMECOLOR, TICKER_SIZE, TITLE_SIZE } from "./variables";
 
 import "./scss/style.scss";
 
@@ -10,6 +10,9 @@ const App = function () {
   document.documentElement.style.setProperty("--bg-color", THEMECOLOR);
   if (TICKER_SIZE) {
     document.documentElement.style.setProperty("--ticker-size", TICKER_SIZE);
+  }
+  if (TITLE_SIZE) {
+    document.documentElement.style.setProperty("--title-size", TITLE_SIZE);
   }
 
   return (

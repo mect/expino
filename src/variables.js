@@ -5,3 +5,4 @@ export const WEATHERCITY = window.expino.WEATHERCITY;
 export const TOKEN = window.expino.TOKEN;
 export const TICKER_SIZE = window.expino.TICKER_SIZE;
 export const STYLE = window.expino.STYLE;
+export const TITLE_SIZE = window.expino.TITLE_SIZE;
