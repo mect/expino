@@ -5,3 +5,13 @@
   color: #000;
   font-size: 4rem;
 }
+
+.date {
+  text-align: center;
+  padding-bottom: 0px;
+  font-size: 2rem;
+}
+
+.clock-with-date > .card-content {
+  padding-bottom: 10px;
+}

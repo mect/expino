@@ -197,8 +197,8 @@ class Switcher extends React.Component {
                 </div>
               </Row>
               <Row>
-                <Card className="left-column-card">
-                  <Clock />
+                <Card className="left-column-card clock-with-date">
+                  <Clock date={true} />
                 </Card>
               </Row>
               <Row>

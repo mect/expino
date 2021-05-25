@@ -17,6 +17,19 @@ class Clock extends Component {
     if (!this.state.dots) {
       dots = " ";
     }
+    let date = null;
+
+    if (this.props.date) {
+      date = (
+        <h4 className="date">
+          {this.state.time.toLocaleString("nl", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}
+        </h4>
+      );
+    }
     return (
       <div>
         <h2 className="clock">
@@ -28,6 +41,7 @@ class Clock extends Component {
             ? "0" + this.state.time.getMinutes()
             : this.state.time.getMinutes()}
         </h2>
+        {date}
       </div>
     );
   }
