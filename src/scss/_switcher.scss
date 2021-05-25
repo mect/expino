@@ -25,6 +25,8 @@ h6 {
 
 img {
   max-height: 65vh;
+  max-width: 81vw;
+  object-fit: contain;
 }
 
 .slide {
@@ -179,4 +181,10 @@ img {
 
 .delijn {
   font-size: 1.1rem;
+}
+
+.switcher-close {
+  img {
+    max-width: 35vw;
+  }
 }

@@ -189,7 +189,7 @@ class Switcher extends React.Component {
     if (STYLE == "close") {
       return (
         <div>
-          <Row className="switcher">
+          <Row className="switcher switcher-close">
             <Col s={2}>
               <Row>
                 <div className="logo-margin">
