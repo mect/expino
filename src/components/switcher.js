@@ -26,6 +26,8 @@ class Switcher extends React.Component {
   featureSlides = [];
   graphs = [];
 
+  currentDate = 0;
+
   ws = null;
 
   constructor(props) {
@@ -75,9 +77,10 @@ class Switcher extends React.Component {
     };
   };
 
-  loadNewsItems = async () => {
+  loadNewsItems = async (hideLoading) => {
+    this.currentDate = new Date().getDate();
     this.setState({
-      loading: true,
+      loading: !hideLoading,
     });
 
     let res = await getAllNews();
@@ -106,6 +109,10 @@ class Switcher extends React.Component {
   };
 
   rotate = () => {
+    if (this.currentDate !== new Date().getDate() && !this.state.loading) {
+      // new day, reload content
+      return this.loadNewsItems(true);
+    }
     let items = this.state.items;
     if (items.length === 0) {
       // nothing to do here, come back in a sec
