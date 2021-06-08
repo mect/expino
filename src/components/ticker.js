@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Card, Row, Icon } from "react-materialize";
 import Marquee from "react-malarquee";
 import { HOST, TOKEN } from "../variables";
-import { getDisplay } from "../apis/display_api";
 import { unescape } from "lodash";
 
 class Ticker extends Component {
@@ -10,17 +9,18 @@ class Ticker extends Component {
     super(props);
 
     this.state = { items: [] };
+  }
 
+  componentDidMount() {
     this.loadTicker();
     setInterval(this.loadTicker, 60 * 60 * 1000); // every hour
   }
 
   loadTicker = async () => {
-    const display = await getDisplay();
-    if (display.tickerRSS) {
+    if (this.props.display.tickerRSS) {
       return this.loadRSS();
     }
-    this.setState({ items: [display.tickerText] });
+    this.setState({ items: [this.props.display.tickerText] });
   };
 
   loadRSS = () => {

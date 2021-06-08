@@ -13,6 +13,7 @@ import Forecast from "./forecast";
 import "velocity-animate/velocity.ui";
 import VelocityTransitionGroup from "velocity-react/velocity-transition-group";
 import { HOST, LOGO, STYLE } from "../variables";
+import { getDisplay } from "../apis/display_api";
 
 const availableSlides = {
   traffic: <Traffic time={15} title="Verkeer in de buurt" />,
@@ -29,6 +30,8 @@ class Switcher extends React.Component {
   currentDate = 0;
 
   ws = null;
+
+  display = {};
 
   constructor(props) {
     super(props);
@@ -77,7 +80,13 @@ class Switcher extends React.Component {
     };
   };
 
+  loadDisplay = async () => {
+    this.display = await getDisplay();
+  };
+
   loadNewsItems = async (hideLoading) => {
+    await this.loadDisplay();
+
     this.currentDate = new Date().getDate();
     this.setState({
       loading: !hideLoading,
@@ -246,7 +255,7 @@ class Switcher extends React.Component {
               </VelocityTransitionGroup>
             </Col>
           </Row>
-          <Ticker />
+          <Ticker display={this.display} />
         </div>
       );
     }
@@ -288,7 +297,7 @@ class Switcher extends React.Component {
             </VelocityTransitionGroup>
           </Col>
         </Row>
-        <Ticker />
+        <Ticker display={this.display} />
       </div>
     );
   }
