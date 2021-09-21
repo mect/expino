@@ -5,22 +5,12 @@ import NewsItem from "./newsitem";
 import Weather from "./weather";
 import Traffic from "./traffic";
 import Clock from "./clock";
-import Social from "./social";
 import Ticker from "./ticker";
-import Trains from "./trains";
 import DeLijn from "./delijn";
-import Forecast from "./forecast";
 import "velocity-animate/velocity.ui";
 import VelocityTransitionGroup from "velocity-react/velocity-transition-group";
 import { HOST, LOGO, STYLE } from "../variables";
 import { getDisplay } from "../apis/display_api";
-
-const availableSlides = {
-  traffic: <Traffic time={15} title="Verkeer in de buurt" />,
-  social: <Social time={15} title="Zorginnovatie op social media" />,
-  trains: <Trains time={15} title="Dienstregeling Antwerpen-Centraal" />,
-  weather: <Forecast time={15} title="Het Weer" />,
-};
 
 class Switcher extends React.Component {
   count = 0;
@@ -234,7 +224,7 @@ class Switcher extends React.Component {
             </Col>
             <Col s={5}>
               <VelocityTransitionGroup>
-                <Card className="mainslide" key={this.count}>
+                <Card className={this.display.disableTicker ? "mainslide" : "mainslide with-ticker"} key={this.count}>
                   {this.state.items[0]}
                 </Card>
               </VelocityTransitionGroup>
@@ -255,14 +245,14 @@ class Switcher extends React.Component {
               </VelocityTransitionGroup>
             </Col>
           </Row>
-          <Ticker display={this.display} />
+          {this.display.disableTicker || <Ticker display={this.display} />}
         </div>
       );
     }
 
     return (
       <div>
-        <Row className="switcher">
+        <Row className={this.display.disableTicker ? "switcher" : "switcher with-ticker"}>
           <Col s={2}>
             <Row>
               <div className="logo-margin">
@@ -291,13 +281,13 @@ class Switcher extends React.Component {
           </Col>
           <Col s={10}>
             <VelocityTransitionGroup>
-              <Card className="mainslide" key={this.count}>
+              <Card className={this.display.disableTicker ? "mainslide" : "mainslide with-ticker"} key={this.count}>
                 {this.state.items[0]}
               </Card>
             </VelocityTransitionGroup>
           </Col>
         </Row>
-        <Ticker display={this.display} />
+        {this.display.disableTicker || <Ticker display={this.display} />}
       </div>
     );
   }

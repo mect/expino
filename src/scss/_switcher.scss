@@ -48,7 +48,10 @@ img {
 .mainslide {
   @extend .slide;
   line-height: 1;
-  height: 89.55vh;
+  height: 98vh;
+  &.with-ticker{
+    height: 89.55vh;
+  }
 }
 
 .sideslide {
