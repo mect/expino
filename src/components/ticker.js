@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Card, Row, Icon } from "react-materialize";
-import Marquee from "react-malarquee";
+import Marquee from "react-fast-marquee";
 import { HOST, TOKEN } from "../variables";
 import { unescape } from "lodash";
 
@@ -58,7 +58,7 @@ class Ticker extends Component {
       "This is a weird hack to not make Marquee crash the browser. If you see this please contact your nearest software engineer. ";
     content = this.state.items.map((item, i) => {
       return (
-        <span className="ticker ticker-item-width" key={i}>
+        <span className="ticker" key={i}>
           {item}&nbsp;&nbsp;---&nbsp;&nbsp;
         </span>
       );
@@ -67,7 +67,7 @@ class Ticker extends Component {
     return (
       <Row className="ticker-margin">
         <Card className="ticker-card-style">
-          <Marquee loop={true} fill={true} rate={100}>
+          <Marquee loop={0} speed={70} gradient={false}>
             {content}
           </Marquee>
         </Card>

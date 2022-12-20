@@ -49,7 +49,8 @@ img {
   @extend .slide;
   line-height: 1;
   height: 98vh;
-  &.with-ticker{
+
+  &.with-ticker {
     height: 89.55vh;
   }
 }
@@ -120,11 +121,6 @@ img {
 
 /*TICKER CSS*/
 
-.ticker-item-width {
-  width: 20%;
-  display: table-cell;
-}
-
 .ticker {
   display: inline;
   font-size: var(--ticker-size);
@@ -166,10 +162,12 @@ img {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
     img {
       width: 100%;
       max-width: 500px;
     }
+
     .spinner {
       width: 100%;
       text-align: center;
