@@ -27,7 +27,7 @@ class DeLijn extends Component {
         }
 
         if (
-          line.vertrekRealtimeTijdstip - new Date().getTime() <
+          (line.vertrekRealtimeTijdstip || line.vertrekTheoretischeTijdstip) - new Date().getTime() <
             this.props.distanceTime * 60 * 1000 &&
           !line.predictionDeleted
         ) {
