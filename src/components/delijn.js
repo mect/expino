@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getDelijn } from "../apis/delijn_api";
+import { getMultivertrekken, mapToHalteDoorkomsten } from "../apis/delijn_api";
 
 class DeLijn extends Component {
   static defaultProps = {
@@ -15,8 +15,9 @@ class DeLijn extends Component {
     this.fetchInfo();
   }
 
-  fetchInfo = () => {
-    getDelijn(this.props.haltes, this.props.amount + 15).then((res) => {
+  fetchInfo = async () => {
+      const res = await getMultivertrekken(this.props.haltes, this.props.amount+15, false)
+
       let deps = [];
       let c = 0;
       while (deps.length < this.props.amount) {
@@ -41,7 +42,7 @@ class DeLijn extends Component {
           borderColor: line.kleurVoorGrondRand,
           direction: line.lijnRichting,
           time:
-            (line.vertrekRealtimeTijdstip || this.vertrekCalendar) -
+            (line.vertrekRealtimeTijdstip || line.vertrekTheoretischeTijdstip) -
             new Date().getTime(),
           realtime: line.predictionStatussen.indexOf("REALTIME") > -1,
           scrapped: line.predictionDeleted,
@@ -51,7 +52,6 @@ class DeLijn extends Component {
       }
 
       this.setState({ departures: deps });
-    });
   };
 
   render() {
