@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getMultivertrekken, mapToHalteDoorkomsten } from "../apis/delijn_api";
+import { getMultivertrekken } from "../apis/delijn_api";
 
 class DeLijn extends Component {
   static defaultProps = {

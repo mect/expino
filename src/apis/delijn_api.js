@@ -1,6 +1,7 @@
 // Thank you to the Multimaxi Traminfo developers for publihing the full React source code of their project...
 
-const TRAVELINFO_TRIP_BASEURL = 'https://api.delijn.be/travelinfo-trip/v1'
+import { HOST, TOKEN } from "../variables";
+const TRAVELINFO_TRIP_BASEURL = '/travelinfo-trip/v1'
 const TRAVELINFO_TRIP_KEY = "2ebe6ee98dc14965b22c294c436c9ac0" // This is a public key, so it's fine to publish it here.
 
 export function mapTripToLijn(trip, servedLineDirectionsMap) {
@@ -68,13 +69,14 @@ async function getMultivertrekkenForStop({
     searchParams.set('exploitationDate', exploitationDate)
   }
 
-  const url =
-    `${TRAVELINFO_TRIP_BASEURL}/stops/${haltenummer}/trips?` +
-    searchParams.toString()
+  const url = `${HOST}/display/delijn?path=` +
+  encodeURIComponent(`${TRAVELINFO_TRIP_BASEURL}/stops/${haltenummer}/trips?` +
+    searchParams.toString())
   const { trips, servedLineDirections, serverDateTime, statusCode, message } =
     await fetch(url, {
       headers: {
         'Ocp-Apim-Subscription-Key': TRAVELINFO_TRIP_KEY,
+        Authorization: `Bearer ${TOKEN}`,
       },
     }).then((data) => data.json())
 
