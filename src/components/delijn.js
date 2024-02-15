@@ -40,7 +40,7 @@ class DeLijn extends Component {
           color: line.kleurAchterGrond,
           textColor: line.kleurVoorGrond,
           borderColor: line.kleurVoorGrondRand,
-          direction: line.lijnRichting,
+          direction: line.bestemming,
           time:
             (line.vertrekRealtimeTijdstip || line.vertrekTheoretischeTijdstip) -
             new Date().getTime(),
