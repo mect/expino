@@ -16,6 +16,7 @@ export function mapTripToLijn(trip, servedLineDirectionsMap) {
   if (!lineDirection || passage.scheduleType === 'NOT_SERVED') {
     return undefined
   }
+
   return {
     predictionStatussen: passage.realtimeStatuses,
     vertrekTheoretischeTijdstip: passage.plannedPassage.departureEpoch,
@@ -57,7 +58,7 @@ export function isTripValid(trip, includeEindHaltes, serverTijd) {
 
 async function getMultivertrekkenForStop({
   haltenummer,
-  type = 'MERGE',
+  type = 'MERGEFLEX',
   exploitationDate,
 }) {
   const searchParams = new URLSearchParams({
@@ -70,8 +71,7 @@ async function getMultivertrekkenForStop({
   }
 
   const url = `${HOST}/display/delijn?path=` +
-  encodeURIComponent(`${TRAVELINFO_TRIP_BASEURL}/stops/${haltenummer}/trips?` +
-    searchParams.toString())
+  encodeURIComponent(`${TRAVELINFO_TRIP_BASEURL}/stops/${haltenummer}/trips` + '?' + searchParams.toString())
   const { trips, servedLineDirections, serverDateTime, statusCode, message } =
     await fetch(url, {
       headers: {
@@ -109,7 +109,7 @@ export async function getMultivertrekken(
     haltenummerArray.map((haltenummer) =>
       getMultivertrekkenForStop({
         haltenummer,
-        type: 'MERGE',
+        type: 'MERGEFLEX',
       }),
     ),
   )
